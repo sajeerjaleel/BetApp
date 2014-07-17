@@ -1,18 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>BetApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+	<head>
+	  <title>BetApp</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
 
+	<% unless params[:controller] == "home" and  params[:action] == "index" %> 
+		<body>
 
-<%= yield %>
+			<header id="header" class="header"  data-offset-top="10">
+		    <nav class="navbar navbar-default" role="navigation" style="background-color:#0B0B3B">		
+					<div class="navbar-header">
+			      <div class="collapse navbar-collapse navbar-ex1-collapse" style="float:right;">
+		          <ul class="nav navbar-nav">
+		            <li class="dropdown ">
+		              <a href="/home" style="color:#0B0B3B;">Home</a>
+		            </li>
 
-</body>
+		            <li class="dropdown">
+		              <a href="/table" style="color:#0B0B3B;">Table</a>
+		            </li>
+
+		            <li class="dropdown">
+		             	<a href="/fixtures" style="color:#0B0B3B;">Fixtures</a>
+		            </li>
+
+		            <li class="dropdown">
+		              <a href="/results" style="color:#0B0B3B;">Results</a>
+		            </li>
+
+		            <% if current_user %>
+			            <li class="dropdown" style="margin-left:600px;margin-top: 15px;">
+			              <%= current_user.email %>
+			            </li>
+		            <% end %>
+
+		          </ul>
+		        	<!-- /.nav -->
+		        </div>
+		        	<!-- /.navbar-collapse -->
+		      </div>
+
+		    </nav>
+		      <!-- /.navbar -->
+		  </header>
+
+	    <div class="container">
+
+	    <% if notice %>
+	    	<p class="alert alert-success" role="alert" ><%= notice %></p>
+	    <% end %>
+	    <% if alert %>
+				<p class="alert alert-danger" role="alert" ><%= alert %></p>
+			<% end %>
+
+				<%= yield %>
+
+			</div>
+
+		</body>
+
+	<% else %>
+
+		<body style = " background-image:url('epl.jpg');background-size: 100%;
+    background-repeat: no-repeat; ">
+
+	    <div class="container">
+				<%= yield %>
+			</div>
+		</body>
+
+	<% end %>
+
 </html>

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # Overwriting the sign_in redirect path method
   def after_sign_in_path_for(resource) 
-      home_index_path
+      home_path
   end
 
   # Overwriting the sign_out redirect path method

@@ -1,0 +1,80 @@
+<div class="container">
+	<legend><h2>Premier League Table</h2></legend>
+	<div class="table-responsive">
+		<table class="table table-bordered">
+		  <thead>
+		  	<tr style="background-color:#0B0B3B; color:white;">
+		  		<td>Position</td>
+		  		<td>Team</td>
+		  		<td>Played</td>
+		  		<td>Won</td>
+		  		<td>Drawn</td>
+		  		<td>Lost</td>
+		  		<td>GF</td>
+		  		<td>GA</td>
+		  		<td>GD</td>
+		  		<td>Points</td>
+		  	</tr>
+		  </thead>
+		  <tbody>
+		  	<% @epldata.each do |a| %>
+		  		<% if @a < 4 %>
+		  			<% if a.team == "Man Utd"%>
+		  				<tr style="background-color:#610B21;color:white;">
+		  			<% else %>
+			  			<tr class="success">
+			  		<% end %>
+			  			<td><%= a.position %></td>
+			  			<td><%= a.team %></td>
+			  			<td><%= a.played %></td>
+			  			<td><%= a.won %></td>
+			  			<td><%= a.drawn %></td>
+			  			<td><%= a.lost %></td>
+			  			<td><%= a.goalfor %></td>
+			  			<td><%= a.goalagainst %></td>
+			  			<td><%= a.goaldifference %></td>
+			  			<td><%= a.points %></td>
+			  		</tr>
+			  		<% @a = @a+1 %>
+			  		<% @count = @count+1 %>
+			  	<% elsif @count == 18 %>
+			  		<% if a.team == "Man Utd"%>
+		  				<tr style="background-color:#610B21;color:white;">
+		  			<% else %>
+			  			<tr class="danger">
+			  		<% end %>
+			  			<td><%= a.position %></td>
+			  			<td><%= a.team %></td>
+			  			<td><%= a.played %></td>
+			  			<td><%= a.won %></td>
+			  			<td><%= a.drawn %></td>
+			  			<td><%= a.lost %></td>
+			  			<td><%= a.goalfor %></td>
+			  			<td><%= a.goalagainst %></td>
+			  			<td><%= a.goaldifference %></td>
+			  			<td><%= a.points %></td>
+			  		</tr>
+			  	<% else %>
+			  	<% if a.team == "Man Utd"%>
+		  				<tr style="background-color:#610B21;color:white;">
+		  			<% else %>
+			  			<tr style="background-color:#CED8F6;">
+			  		<% end %>
+			  			<td><%= a.position %></td>
+			  			<td><%= a.team %></td>
+			  			<td><%= a.played %></td>
+			  			<td><%= a.won %></td>
+			  			<td><%= a.drawn %></td>
+			  			<td><%= a.lost %></td>
+			  			<td><%= a.goalfor %></td>
+			  			<td><%= a.goalagainst %></td>
+			  			<td><%= a.goaldifference %></td>
+			  			<td><%= a.points %></td>
+			  			<% @count = @count+1 %>
+			  		</tr>
+			  	<% end %>
+		  	<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
