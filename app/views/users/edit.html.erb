@@ -1,0 +1,32 @@
+<%= form_for(@user, url: user_path(@user.id), method: :put) do |f| %>
+	<p><div>
+		First Name :
+    <%= f.text_field :first_name, placeholder: "First Name"%>
+  </div></p>
+
+  <p><div>
+  Last Name :
+	<%= f.text_field :last_name, placeholder: "Last Name"%>
+	</div></p>
+
+	<p><div>
+	Nick Name :
+	<%= f.text_field :nick_name, placeholder: "Nick Name"%>
+	</div></p>
+
+	<p><div>
+	Favourite Team :
+	<%= f.select(:team_id, Team.all.collect {|a| [a.team_name, a.id]}, {:include_blank => "Select"}) %>
+	</div></p>
+	
+	<p><div>
+		DP :
+		<%= f.file_field :image %>
+	</div></p>
+	<%= f.submit "Update" %>
+
+<% end %>
+
+
+
+ 
