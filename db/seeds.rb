@@ -26,3 +26,13 @@ t = Team.find_or_create_by(team_name: 'Swansea City', team_stadium: 'Liberty Sta
 t = Team.find_or_create_by(team_name: 'Tottenham Hotspur', team_stadium: 'White Hart Lane')
 t = Team.find_or_create_by(team_name: 'West Bromwich Albion', team_stadium: 'The Hawthorns')
 t = Team.find_or_create_by(team_name: 'West Ham United', team_stadium: 'Boleyn Ground')
+
+user = User.find_by_email 'sajeerj@qburst.com'
+unless user
+	user = User.new
+	user.email = 'sajeerj@qburst.com'
+	user.password = 'password'
+	# user.approved = true
+	a = user.save(validate: false	)
+	user.add_role :admin
+end

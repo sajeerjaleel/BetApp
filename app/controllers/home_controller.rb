@@ -3,6 +3,10 @@ class HomeController < ApplicationController
 	def index
 	end
 
+	def new
+		
+	end
+
 	def fixtures
 		@fixtures = Fixture.all
 	end
