@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get  '/home' => 'home#new'
   get  '/home/:id/bet' => 'home#bet', as: :bet
+  post 'home/bet/:id/create' => 'home#createbet', as: :createbet
   get  '' => 'home#index'
 
 
