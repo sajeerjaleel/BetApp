@@ -24,32 +24,36 @@
 		    	<div class="col-xs-8 col-md-4">
 				    <div class="thumbnail">
 				      <img src="Chelsea.png" alt="...">
+				      <%= BetMatch.first.bet_fixture.home_team %>
 				    </div>
 				  </div>
 				  <div class="col-xs-8 col-md-4">
 				    <div class="thumbnail">
 				      <img src="Arsenal.png" alt="...">
+				      <%= BetMatch.first.bet_fixture.away_team %>
 				    </div>
 				  </div>
 		      <div class="carousel-caption">
 		      </div>
 		    </div>
-		    <div class="item">
-		      <div class="col-xs-4 col-md-2">
-		    	</div>
-		    	<div class="col-xs-8 col-md-4">
-				    <div class="thumbnail">
-				      <img src="Everton.png" alt="...">
-				    </div>
-				  </div>
-				  <div class="col-xs-8 col-md-4">
-				    <div class="thumbnail">
-				      <img src="StokeCity.png" alt="...">
-				    </div>
-				  </div>
-		      <div class="carousel-caption">
-		      </div>
-		    </div>
+		    <% for i in 1...@count %>
+			    <div class="item">
+			      <div class="col-xs-4 col-md-2">
+			    	</div>
+			    	<div class="col-xs-8 col-md-4">
+					    <div class="thumbnail">
+					      <img src="Everton.png" alt="...">
+					    </div>
+					  </div>
+					  <div class="col-xs-8 col-md-4">
+					    <div class="thumbnail">
+					      <img src="StokeCity.png" alt="...">
+					    </div>
+					  </div>
+			      <div class="carousel-caption">
+			      </div>
+			    </div>
+			  <% end %>
 		  </div>
 
 		  <!-- Controls -->
