@@ -23,17 +23,16 @@
 		    	</div>
 		    	<div class="col-xs-8 col-md-4">
 				    <div class="thumbnail">
-				      <img src="Chelsea.png" alt="...">
-				      <%= BetMatch.first.bet_fixture.home_team %>
+				      <%= image_tag "#{@matches.first.bet_fixture.home_team}.png" %>
 				    </div>
 				  </div>
 				  <div class="col-xs-8 col-md-4">
 				    <div class="thumbnail">
-				      <img src="Arsenal.png" alt="...">
-				      <%= BetMatch.first.bet_fixture.away_team %>
+				      <%= image_tag "#{@matches.first.bet_fixture.away_team}.png" %>
 				    </div>
 				  </div>
-		      <div class="carousel-caption">
+		      <div class="row">
+		      	<%= link_to "Bet", bet_path(@matches.first.bet_fixture.id)%>
 		      </div>
 		    </div>
 		    <% for i in 1...@count %>
@@ -42,15 +41,16 @@
 			    	</div>
 			    	<div class="col-xs-8 col-md-4">
 					    <div class="thumbnail">
-					      <img src="Everton.png" alt="...">
+					      <%= image_tag "#{@matches[i].bet_fixture.home_team}.png" %>
 					    </div>
 					  </div>
 					  <div class="col-xs-8 col-md-4">
 					    <div class="thumbnail">
-					      <img src="StokeCity.png" alt="...">
+					      <%= image_tag "#{@matches[i].bet_fixture.away_team}.png" %>
 					    </div>
 					  </div>
-			      <div class="carousel-caption">
+			      <div class="row">
+			      	<%= link_to "Bet", bet_path(@matches[i].bet_fixture.id)%>
 			      </div>
 			    </div>
 			  <% end %>
