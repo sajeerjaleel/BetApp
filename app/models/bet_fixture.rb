@@ -1,3 +1,3 @@
 class BetFixture < ActiveRecord::Base
-	belongs_to :bet_match
+	has_one :bet_match
 end

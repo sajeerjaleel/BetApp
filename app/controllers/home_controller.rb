@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 	end
 
 	def new
+		@count = BetMatch.count
 	end
 
 	def fixtures
