@@ -1,5 +1,5 @@
 class BetMatch < ActiveRecord::Base
-	has_many :bet_fixtures
+	belongs_to :bet_fixture
 	after_create :complete_fixture
 
 	def complete_fixture
