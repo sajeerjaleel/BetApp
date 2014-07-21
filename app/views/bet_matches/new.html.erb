@@ -1,0 +1,10 @@
+
+<h1> Create Bet...</h1>
+<%= form_for(@bet_match, url: bet_matches_path(@bet_match.id), method: :post) do |f| %>
+	<p><div>
+	Select Fixture :
+	<%= f.select(:bet_fixture_id, @fixtures.collect {|a| [a.bet_data, a.id]}, {:include_blank => "Select"}) %>
+	</div></p>
+	<%= f.submit "Create" %>
+
+<% end %>
