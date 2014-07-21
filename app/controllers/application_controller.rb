@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
 
   # Overwriting the sign_in redirect path method
   def after_sign_in_path_for(resource) 
+    if resource.has_role? :admin
+      admins_path
+    else
       home_path
+    end
   end
 
   # Overwriting the sign_out redirect path method
