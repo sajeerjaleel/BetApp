@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
 	def new
 		@count = BetMatch.count
+		@matches = BetMatch.all
 	end
 
 	def fixtures
@@ -19,6 +20,10 @@ class HomeController < ApplicationController
 		@epldata = Table.all
 		@a = 0
 		@count = 1
+	end
+
+	def bet
+		@fixture = BetFixture.find_by(params[:id])
 	end
 	
 end
