@@ -75,7 +75,84 @@
 
 <% end %>
 
+<h3 align = "center">Comments</h3>
+<br>
+<p class = "right">Showing last 5 comments</p>
+<% unless @bet_comments.empty? %>
+<% @bet_comments.each do |comment|%>
+<div class = "row">
+	<div class = "col-md-2">
+	</div>
+	<div class="col-md-8">
+		<div class="thumbnail">
+		<div class= "row">
+			<div class= "col-md-2">
+			<%= display_image(comment.user)%>
+			</div>
+			<div class="content col-md-6 thumbnail"><p><%= comment.content%></p></div>
+		</div>
+		<div class="row">
+		<span class="fullname"><%= comment.user.full_name%></span>
+		<span id= "<%= comment.id%>">
+		<span class = "span_right" data-commentid= "<%= comment.id%>">
+		<%= image_tag "green_up.png", width: "20", height: "20", class: "like"+comment.status(current_user)%><%= comment.like%> Likes
+		</span>
+		<span class= "span_down" data-commentid= "<%= comment.id%>">
+		<%= image_tag "red_down.png", width: "20", height: "20", class: "dislike"+comment.status(current_user)%><%= comment.dislike%> Dislikes
+		</span>
+		</span>
+
+			<span class ="created_at"><%= comment.created_at.strftime("Commented at %d-%m-%Y %H:%M:%S") %></span>
+		</div>
+		</div>
+	</div>
+</div>
+<%end%>
+<% end %>
+
+<div class = "row">
+	<div class = "col-md-2">
+	</div>
+	<div class="col-md-8">
+		<div class="thumbnail">
+			<%= form_for(@comment, url: create_comment_path(@fixture.id), method: :post) do |f| %>
+				<p><div>
+					 Add Comment :
+			    <%= f.text_area :content, class: "form-control",rows: "3"%>
+			  </div></p>
+			  <%= f.submit "comment", class: "btn btn-primary" %>
+
+			<% end %>
+		</div>
+	</div>
+</div>
 
 <script>
+
+var vote = function(type,user_id,comment_id){
+$.ajax({
+    type: "POST",
+    dataType: "script",
+    url: '/bet/vote',
+    data: {type: type, user: user_id, comment: comment_id}
+  });
+}
+
+$('.like').click(function(e){
+	console.log($(this).parent().attr('data-commentid'))
+	var comment_id = $(this).parent().attr('data-commentid');
+	var user_id = "<%= current_user.id%>"
+	vote("like",user_id,comment_id)
+});
+
+$('.dislike').click(function(e){
+	console.log($(this).parent().attr('data-commentid'))
+	var comment_id = $(this).parent().attr('data-commentid');
+	var user_id = "<%= current_user.id%>"
+	vote("dislike",user_id,comment_id)
+});
+
+
+
 
 </script>

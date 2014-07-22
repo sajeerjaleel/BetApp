@@ -1,0 +1,7 @@
+<% comment = @comment %>
+<span class = "span_right" data-commentid= "<%= comment.id%>">
+		<%= image_tag "green_up.png", width: "20", height: "20", class: "liked"%><%= comment.like%> Likes
+		</span>
+		<span class= "span_down" data-commentid= "<%= comment.id%>">
+		<%= image_tag "red_down.png", width: "20", height: "20", class: "disliked"%><%= comment.dislike%> Dislikes
+		</span>

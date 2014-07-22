@@ -32,6 +32,11 @@ Rails.application.routes.draw do
     resources :bet_matches
     resources :comments
 
+    get '/bet/:id/comments' => 'home#show_comments', as: :bet_comments
+    post '/bet/create_comment/:id' => 'home#create_comment', as: :create_comment
+    post 'bet/vote' => 'home#vote', as: :vote
+
+
   #   resources :products
   
 

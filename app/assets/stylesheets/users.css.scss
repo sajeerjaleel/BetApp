@@ -1,3 +1,53 @@
 .error{
 	color: red;
 }
+
+textarea {
+    max-width: 800px; 
+    max-height: 300px;
+}
+
+textarea {
+    resize: none;
+}
+
+.content{
+	margin-top: 10px;
+	margin-left:20px;
+	height: 50px;
+	width: 600px;
+}
+.content p{
+	padding-top: 10px;
+	padding-left: 10px;
+	color: blue;
+}
+
+.created_at{
+	margin-left: 200px;
+}
+
+.fullname{
+	margin-left: 30px;
+	color: red;
+}
+
+.right{
+	margin-left:200px;
+}
+
+.border{
+	border: 2px solid;
+}
+
+.span_right{
+	margin-left:30px;
+}
+
+.span_down{
+	padding-left: 15px;
+}
+
+.liked, .disliked{
+	 opacity: 0.4;
+}

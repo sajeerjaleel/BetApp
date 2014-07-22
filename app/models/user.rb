@@ -8,5 +8,15 @@ class User < ActiveRecord::Base
   has_one :team
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  def full_name
+  	if nick_name != "" && nick_name != nil
+  		nick_name
+  	elsif first_name != "" && first_name != nil
+  		first_name
+  	else
+  		"Anonymous"
+  	end
+  end
   
 end

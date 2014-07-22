@@ -1,6 +1,5 @@
 class BetMatch < ActiveRecord::Base
 	belongs_to :bet_fixture
-	has_many :comments
 	accepts_nested_attributes_for :bet_fixture
 
 	after_create :complete_fixture

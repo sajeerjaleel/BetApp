@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
 	def new
 		@count = BetMatch.count
-		@matches = BetMatch.all
+		@matches = BetMatch.where('completed = ? and done = ?', false, false)
 	end
 
 	def fixtures
@@ -26,6 +26,16 @@ class HomeController < ApplicationController
 		@fixture = BetFixture.find (params[:id])
 		@placed_bet = Bet.where(bet_fixture_id: params[:id], user_id: current_user.id)
 		@bet = Bet.new
+		@comment = Comment.new
+		@bet_comments = @fixture.comments.order("created_at DESC").first(5)
+	end
+
+	def create_comment
+		@bet_fixture = BetFixture.find params[:id]
+		comment = @bet_fixture.comments.create(comment_params)
+		comment.user_id = current_user.id
+		comment.save
+		redirect_to bet_path
 	end
 
 	def createbet
@@ -44,10 +54,30 @@ class HomeController < ApplicationController
     end
 	end
 
+	def vote
+		@comment = Comment.find(params[:comment])
+		 	unless @comment.user_ids.include? params[:user].to_i
+				@comment.user_ids += [params[:user].to_i]
+				if params[:type] == "like"
+					@comment.like += 1
+				elsif params[:type] == "dislike"
+					@comment.dislike +=1
+				end	
+				@comment.save	
+			end	
+		respond_to do |format|
+      format.js
+    end
+	end
+
 	private
 
   def bet_params
     params.require(:bet).permit(:prediction, :bet_fixture_id, :user_id, :coins)
+  end
+
+  def comment_params
+  	params.require(:comment).permit(:content)
   end
 	
 end
