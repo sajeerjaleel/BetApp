@@ -8,4 +8,14 @@ module ApplicationHelper
 		end
 	end
 
+	def home_image(bet_match)
+		image_name = bet_match.bet_fixture.home_team
+		image_name+".png"
+	end
+
+	def away_image(bet_match)
+		image_name = bet_match.bet_fixture.away_team
+		image_name+".png"
+	end
+
 end

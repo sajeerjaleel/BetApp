@@ -1,0 +1,65 @@
+<div class="col-lg-24 col-lg-24">
+<div class = "thumbnail">
+<H3 align = "center"><%= @bet_match.bet_fixture.home_team+ " vs " +  @bet_match.bet_fixture.away_team %></H3>
+	<br>
+	<div class = "row" align = "center">
+	<div class= "col-md-4" > 
+	<%= image_tag home_image(@bet_match), width: "200", height: "150"%>
+	</div>
+	<div class= "col-md-4" > 
+	<%= image_tag "vs.png", width: "30", height: "30"%>
+	</div>
+	<div class= "col-md-4"> 
+	<%= image_tag away_image(@bet_match), width: "200", height: "150" %>
+	</div>
+	</div>
+	<div align = "center">
+	<%= form_for(@bet_match, url: bet_match_path(@bet_match.id), method: :put) do |f| %>
+		
+		<p><div>
+		Completed? :
+		 <%= f.select :completed,[['TRUE', true], ['FALSE', false]] %>
+		 <span class = "error comp">&nbsp</span></div></p>
+		<p><div>
+		Result of the Match :
+		 <%= f.fields_for :bet_fixture do |ff| %>
+		 	<%= ff.select :result, [['Home', "home"], ['Away', "away"], ['Draw',"draw"]], {include_blank: "Select"} %>
+		 <%end%>
+		 <span class= "error result"></span>
+		</div></p> 	
+
+		 <p><div>
+		Finished Completely? :
+		 <%= f.select :done,[['TRUE', true], ['FALSE', false]]  %>
+		 </div></p>
+
+		<%= f.submit "Submit" , class: "btn btn-primary submit" %>
+
+	<% end %>
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+	$('.submit').click(function(e){
+		if ($('#bet_match_done').val() == "true" && $('#bet_match_bet_fixture_result').val() == "")
+		{	
+			e.preventDefault();
+			$('.result').html("Please enter result to submit");
+		}
+		else{
+			$('.result').html("");
+		}
+
+		if ($('#bet_match_done').val() == "true" && $('#bet_match_completed').val() == "false"){
+			e.preventDefault();
+			$('.comp').html("completed should be true");
+		}
+		else{
+			$('.comp').html("");
+		}
+
+	});
+
+</script>
