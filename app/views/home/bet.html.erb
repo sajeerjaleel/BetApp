@@ -1,1 +1,81 @@
-Bet
+<br><br>
+<div class="row">
+<div class="col-xs-2 col-md-2"></div>
+	<div class="col-xs-4 col-md-3">
+			<%= image_tag "#{@fixture.home_team}.png", :style => "height:200px;width:200px;margin-left: 30px;", :align => "center" %><br><br>
+			<strong><p align="center"><%= @fixture.home_team %></p></strong>
+	</div>
+	<div class="col-xs-1 col-md-2">
+		<%= image_tag "vs.png", :style => "height:50px;width:50px;margin-top:80px;margin-left: 50px;", :align => "center" %>
+		<div class="row">
+			<br><p align="center"><%= @fixture.date %></p>
+			<p align="center"><%= @fixture.time %>
+			<p align="center"><%= @fixture.location %>
+		</div>
+	</div>
+	<div class="col-xs-4 col-md-3">
+			<%= image_tag "#{@fixture.away_team}.png", :style => "height:200px;width:200px;margin-left: 30px;" %><br><br>
+			<strong><p align="center"><%= @fixture.away_team %></p></strong>
+	</div>
+</div>
+<br><br>
+
+<% unless placed_bet %>
+
+	<%= form_for(@bet, :url => createbet_path(@fixture.id), method: :post, validate: true) do |f| %>
+		<div class="row">
+			<div class="col-xs-6 col-md-5">
+			</div>
+			<div class="col-xs-6 col-md-5">
+				<fieldset class="radios">
+			    <label class="label_radio r_on">
+			      <%= f.radio_button :prediction, 'home', :checked => true %>
+			      <%= @fixture.home_team %></label>
+			    <label class="label_radio">
+			      <%= f.radio_button :prediction, 'draw', :checked => true %>
+			      Draw</label>
+			    <label class="label_radio">
+			      <%= f.radio_button :prediction, 'away', :checked => true %>
+			      <%= @fixture.away_team %></label>
+			  </fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 col-md-5">
+			</div>
+			<div class="col-xs-6 col-md-5">
+				Coins: <%= f.number_field :coins, { min: 1, max: current_user.coins} %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 col-md-5">
+			</div>
+			<div class="col-xs-6 col-md-5">
+				<%= f.submit "Submit", value: "Submit", class: "btn btn-success", :disable_with => 'Submit' %>
+			</div>
+		</div>
+	<% end %>
+
+<% else %>
+
+	<div class="row">
+		<div class="col-xs-6 col-md-5">
+		</div>
+		<div class="col-xs-6 col-md-7">
+			<p> Bet Placed for : <%= predicted_team  %> </p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-md-5">
+		</div>
+		<div class="col-xs-6 col-md-7">
+			<p> Coins : <%= @placed_bet.first.coins  %> </p>
+		</div>
+	</div>
+
+<% end %>
+
+
+<script>
+
+</script>
