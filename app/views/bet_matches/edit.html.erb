@@ -25,7 +25,7 @@
 		 <%= f.fields_for :bet_fixture do |ff| %>
 		 	<%= ff.select :result, [['Home', "home"], ['Away', "away"], ['Draw',"draw"]], {include_blank: "Select"} %>
 		 <%end%>
-		 <span class= "error result"></span>
+		 <span class= "error result">&nbsp</span>
 		</div></p> 	
 
 		 <p><div>
@@ -43,8 +43,9 @@
 <script type="text/javascript">
 
 	$('.submit').click(function(e){
-		if ($('#bet_match_done').val() == "true" && $('#bet_match_bet_fixture_result').val() == "")
+		if ($('#bet_match_done').val() == "true" && $('#bet_match_bet_fixture_attributes_result').val() == "")
 		{	
+			alert('hi');
 			e.preventDefault();
 			$('.result').html("Please enter result to submit");
 		}
@@ -52,7 +53,7 @@
 			$('.result').html("");
 		}
 
-		if ($('#bet_match_done').val() == "true" && $('#bet_match_completed').val() == "false"){
+		if ($('#bet_match_done').val() == "true" && $('#bet_match_completed').val() != "true"){
 			e.preventDefault();
 			$('.comp').html("completed should be true");
 		}
