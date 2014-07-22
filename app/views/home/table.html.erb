@@ -22,7 +22,7 @@
 		  			<% if a.team == "Man Utd"%>
 		  				<tr style="background-color:#610B21;color:white;">
 		  			<% else %>
-			  			<tr class="success">
+			  			<tr>
 			  		<% end %>
 			  			<td><%= a.position %></td>
 			  			<td><%= a.team %></td>
@@ -39,9 +39,9 @@
 			  		<% @count = @count+1 %>
 			  	<% elsif @count == 18 %>
 			  		<% if a.team == "Man Utd"%>
-		  				<tr style="background-color:#610B21;color:white;">
+		  				<tr style="color:black;">
 		  			<% else %>
-			  			<tr class="danger">
+			  			<tr>
 			  		<% end %>
 			  			<td><%= a.position %></td>
 			  			<td><%= a.team %></td>
@@ -56,9 +56,9 @@
 			  		</tr>
 			  	<% else %>
 			  	<% if a.team == "Man Utd"%>
-		  				<tr style="background-color:#610B21;color:white;">
+		  				<tr style="color:white;">
 		  			<% else %>
-			  			<tr style="background-color:#CED8F6;">
+			  			<tr>
 			  		<% end %>
 			  			<td><%= a.position %></td>
 			  			<td><%= a.team %></td>

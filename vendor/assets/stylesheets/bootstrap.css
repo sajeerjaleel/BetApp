@@ -306,8 +306,10 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
+  color: white;
   background-color: #ffffff;
+  background-image: url("wallpaper.jpg");
+  background-size: cover;
 }
 
 input,
@@ -400,7 +402,7 @@ h6,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  color: inherit;
+  color: white;
 }
 
 h1 small,
@@ -786,6 +788,16 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+.container-narrow{
+  background-color: rgba(255,255,255,0.4);
+  max-width: auto;
+  max-height: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-bottom: 100px;
 }
 
 .container:before,
@@ -4704,7 +4716,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: white;
+  opacity: 0.1;
   border-color: #e7e7e7;
 }
 
@@ -4723,7 +4736,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #777777;
+  color: black;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -5270,8 +5283,8 @@ a.list-group-item.active > .badge,
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.428571429;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  background-color: rgba(255,255,255,0.4);
+  border: 0px solid #dddddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
@@ -5280,7 +5293,7 @@ a.list-group-item.active > .badge,
 .thumbnail > img,
 .thumbnail a > img {
   display: block;
-  height: auto;
+  height: 200px;
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -6441,11 +6454,13 @@ button.close {
 .carousel-control .icon-prev,
 .carousel-control .glyphicon-chevron-left {
   left: 50%;
+  color:#ffffff;
 }
 
 .carousel-control .icon-next,
 .carousel-control .glyphicon-chevron-right {
   right: 50%;
+  color:#ffffff;
 }
 
 .carousel-control .icon-prev,
@@ -6475,6 +6490,8 @@ button.close {
   margin-left: -30%;
   text-align: center;
   list-style: none;
+  z-index: 1000;
+
 }
 
 .carousel-indicators li {
@@ -6486,15 +6503,16 @@ button.close {
   cursor: pointer;
   background-color: #000 \9;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid #ffffff;
+  border: 0;
   border-radius: 10px;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .carousel-indicators .active {
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #ffffff;
+  background-color: rgba(255,100,100,0.4);
 }
 
 .carousel-caption {
@@ -7115,4 +7133,22 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+.gold{
+  color: #D5AD6D;
+  font-size: 30px;
+  font-weight: 700;
+        
+    background: -webkit-linear-gradient(transparent, transparent),
+                -webkit-linear-gradient(top,
+            rgba(213,173,109,1) 0%, rgba(213,173,109,1) 26%,
+            rgba(226,186,120,1) 35%, rgba(163,126,67,1) 45%,
+            rgba(145,112,59,1) 61%, rgba(213,173,109,1) 100%);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.bet{
+  font-size: 15px;
+  font-weight: 700;
 }
