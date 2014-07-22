@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :admins
     get  '/remove_bets' => 'admins#remove_bets', as: :remove_bets
     resources :bet_matches
+    resources :comments
 
   #   resources :products
   
