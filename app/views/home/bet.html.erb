@@ -21,6 +21,7 @@
 </div>
 <br><br>
 
+
 <% unless placed_bet %>
 
 	<%= form_for(@bet, :url => createbet_path(@fixture.id), method: :post, validate: true) do |f| %>
@@ -73,6 +74,13 @@
 		</div>
 		<div class="col-xs-6 col-md-7">
 			<p> <span style ="font-size:20px;color:black;">Coins : </span> <span style = "color:#886A08" ><%= @placed_bet.first.coins  %> <%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </p>
+		</div>
+	</div><br>
+	<div class="row">
+		<div class="col-xs-6 col-md-5">
+		</div>
+		<div class="col-xs-6 col-md-7">
+			<p> <span style ="font-size:20px;color:black;">Current Bet value : </span> <span style = "color:#886A08" ><%= result  %> <%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </p>
 		</div>
 	</div><br><br>
 

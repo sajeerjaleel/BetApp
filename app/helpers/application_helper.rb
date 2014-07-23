@@ -89,5 +89,35 @@ module ApplicationHelper
 		end
 	end
 
+	def result 
+    @fixture = BetFixture.find params[:id]
+    @bets    = @fixture.bets
+    @user    = current_user
+    @user_bets = current_user.bets.where(bet_fixture_id: @fixture.id)
+    @user_bet = @user_bets.first.prediction
+    
+    @home_bets = @bets.where(prediction: "home")
+    @draw_bets = @bets.where(prediction: "draw")
+    @away_bets = @bets.where(prediction: "away")
+
+    @total_coins = @bets.sum(:coins)
+    @user_coins  = @user_bets.first.coins
+    @home_coins  = @home_bets.sum(:coins)
+    @draw_coins  = @draw_bets.sum(:coins)
+    @away_coins  = @away_bets.sum(:coins)
+
+    if @user_bet == "home"
+        @user_share = (@user_coins.to_f / @home_coins.to_f)
+        @user_win_coin = @user_share * @total_coins
+    elsif @user_bet == "draw"
+        @user_share = (@user_coins.to_f  / @draw_coins.to_f)
+        @user_win_coin = @user_share * @total_coins
+    elsif @user_bet == "away"
+        @user_share = (@user_coins.to_f  / @away_coins.to_f)
+        @user_win_coin = @user_share * @total_coins
+    end
+    return @user_win_coin.to_i
+  end
+
 
 end
