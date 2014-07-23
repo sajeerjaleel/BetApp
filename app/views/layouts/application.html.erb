@@ -12,32 +12,32 @@
 		<body>
 
 			<header id="header" class="header"  data-offset-top="10">
-		    <nav class="navbar navbar-default" role="navigation" style="background-color:#0B0B3B">		
+		    <nav class="navbar navbar-default" role="navigation">		
 					<div class="navbar-header">
 			      <div class="collapse navbar-collapse navbar-ex1-collapse" style="float:right;">
 		          <ul class="nav navbar-nav">
 		            <li class="dropdown ">
 		            	<% if current_user %>
 		            		<% if current_user.has_role? :admin %>
-		            			<a href="/admins" style="color:#0B0B3B;">Home</a>
+		            			<a href="/admins">Home</a>
 		            		<% else %>
-		            			<a href="/home" style="color:#0B0B3B;">Home</a>
+		            			<a href="/home">Home</a>
 		            		<% end %>
 		            	<% else %>
-		              	<a href="" style="color:#0B0B3B;">Home</a>
+		              	<a href="#">Home</a>
 		              <% end %>
 		            </li>
 
 		            <li class="dropdown">
-		              <a href="/table" style="color:#0B0B3B;">Table</a>
+		              <a href="/table">Table</a>
 		            </li>
 
 		            <li class="dropdown">
-		             	<a href="/fixtures" style="color:#0B0B3B;">Fixtures</a>
+		             	<a href="/fixtures">Fixtures</a>
 		            </li>
 
 		            <li class="dropdown">
-		              <a href="/results" style="color:#0B0B3B;">Results</a>
+		              <a href="/results">Results</a>
 		            </li>
 
 		            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, title: "Logout" %></li>
@@ -60,12 +60,26 @@
 
 	    <div class="container">
 
-	    <% if notice %>
-	    	<p class="alert alert-success" role="alert" ><%= notice %></p>
-	    <% end %>
-	    <% if alert %>
-				<p class="alert alert-danger" role="alert" ><%= alert %></p>
-			<% end %>
+		    <% if notice %>
+		    	<p class="alert alert-success alert-dismissible" role="alert" >
+			    	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			    	<%= notice %>
+		    	</p>
+		    <% end %>
+		    <% if alert %>
+					<p class="alert alert-danger alert-dismissible" role="alert" ><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= alert %></p>
+				<% end %>
+
+				<% if current_user %>
+					<div class="row">
+						<div class="col-xs-2 col-md-10">
+						</div>
+						<div class="col-xs-4 col-md-2">
+							<p class="gold" style="float:right;"><%= image_tag "coins.png" , :width => "30px", :height => "30px" %>
+							<%= current_user.coins %></p>
+						</div>
+					</div>
+				<% end %>
 
 				<%= yield %>
 
