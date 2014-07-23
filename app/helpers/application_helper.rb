@@ -34,4 +34,42 @@ module ApplicationHelper
 		end
 	end
 
+	def total_users_bet type
+		@home_bets = @fixture_bets.where(prediction: "home")
+		@draw_bets = @fixture_bets.where(prediction: "draw")
+		@away_bets = @fixture_bets.where(prediction: "away")
+		if type == "home_bets"
+			return @home_bets.count
+		elsif type == "draw_bets"
+			return @draw_bets.count
+		else
+			return @away_bets.count
+		end
+	end
+
+	def total_coins_bet type
+		@home_bets = @fixture_bets.where(prediction: "home")
+		@draw_bets = @fixture_bets.where(prediction: "draw")
+		@away_bets = @fixture_bets.where(prediction: "away")
+		if type == "home_bets"
+			coin = 0
+			@home_bets.each do |bet|
+				coin = coin + bet.coins
+			end
+			return coin
+		elsif type == "draw_bets"
+			coin = 0
+			@draw_bets.each do |bet|
+				coin = coin + bet.coins
+			end
+			return coin
+		else
+			coin = 0
+			@away_bets.each do |bet|
+				coin = coin + bet.coins
+			end
+			return coin
+		end
+	end
+
 end
