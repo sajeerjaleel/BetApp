@@ -1723,7 +1723,7 @@ th {
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #f9f9f9;
+  /*background-color: #f9f9f9;*/
 }
 
 .table-hover > tbody > tr:hover > td,
@@ -1752,7 +1752,7 @@ table th[class*="col-"] {
 .table > thead > .active > th,
 .table > tbody > .active > th,
 .table > tfoot > .active > th {
-  background-color: #f5f5f5;
+  /*background-color: #f5f5f5;*/
 }
 
 .table-hover > tbody > tr > .active:hover,
@@ -4717,7 +4717,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-default {
   background-color: white;
-  opacity: 0.1;
+  opacity: 0.5;
   border-color: #e7e7e7;
 }
 

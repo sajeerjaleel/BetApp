@@ -38,6 +38,7 @@ class HomeController < ApplicationController
 	
 	def bet
 		@fixture = BetFixture.find (params[:id])
+		@fixture_bets = @fixture.bets
 		@placed_bet = Bet.where(bet_fixture_id: params[:id], user_id: current_user.id)
 		@bet = Bet.new
 		@comment = Comment.new

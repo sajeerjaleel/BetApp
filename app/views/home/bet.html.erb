@@ -4,7 +4,7 @@
 <div class="col-xs-2 col-md-2"></div>
 	<div class="col-xs-4 col-md-3">
 			<%= image_tag "#{@fixture.home_team}.png", :style => "height:200px;width:200px;margin-left: 30px;", :align => "center" %><br><br>
-			<strong><p align="center"><%= @fixture.home_team %></p></strong>
+			<strong><p align="center" style="color:black;"><%= @fixture.home_team %></p></strong>
 	</div>
 	<div class="col-xs-1 col-md-2">
 		<%= image_tag "vs.png", :style => "height:50px;width:50px;margin-top:80px;margin-left: 50px;", :align => "center" %>
@@ -16,7 +16,7 @@
 	</div>
 	<div class="col-xs-4 col-md-3">
 			<%= image_tag "#{@fixture.away_team}.png", :style => "height:200px;width:200px;margin-left: 30px;" %><br><br>
-			<strong><p align="center"><%= @fixture.away_team %></p></strong>
+			<strong><p align="center" style="color:black;"><%= @fixture.away_team %></p></strong>
 	</div>
 </div>
 <br><br>
@@ -29,13 +29,13 @@
 			</div>
 			<div class="col-xs-6 col-md-5">
 				<fieldset class="radios">
-			    <label class="label_radio r_on">
+			    <label class="label_radio r_on" style="color:black;">
 			      <%= f.radio_button :prediction, 'home', :checked => true %>
 			      <%= @fixture.home_team %></label>
-			    <label class="label_radio">
+			    <label class="label_radio" style="color:black;">
 			      <%= f.radio_button :prediction, 'draw', :checked => true %>
 			      Draw</label>
-			    <label class="label_radio">
+			    <label class="label_radio" style="color:black;">
 			      <%= f.radio_button :prediction, 'away', :checked => true %>
 			      <%= @fixture.away_team %></label>
 			  </fieldset>
@@ -45,7 +45,7 @@
 			<div class="col-xs-6 col-md-5">
 			</div>
 			<div class="col-xs-6 col-md-5">
-				Coins: <%= f.number_field :coins, :id => "coin_field", :class => "numeric" %>
+				<span style ="font-size:20px;color:black;"><%= image_tag "coins.png" , :width => "30px", :height => "30px" %>Coins : </span> <%= f.number_field :coins, :id => "coin_field", :class => "numeric" %>
 				<p id ="error" style="color:red;"></p>
 			</div>
 		</div>
@@ -64,19 +64,50 @@
 		<div class="col-xs-6 col-md-5">
 		</div>
 		<div class="col-xs-6 col-md-7">
-			<p><span style ="font-size:20px;"> Bet Placed for : </span> <span style = "color:#585858;font-size:18px;font-weight:700;" ><%= predicted_team  %></span> </p>
+			<p><span style ="font-size:20px;color:black;"> Bet Placed for : </span> <span style = "color:#585858;font-size:18px;font-weight:700;" ><%= predicted_team  %></span> </p>
 		</div>
 	</div><br>
 	<div class="row">
 		<div class="col-xs-6 col-md-5">
 		</div>
 		<div class="col-xs-6 col-md-7">
-			<p> <span style ="font-size:20px;">Coins : </span> <span style = "color:#886A08" ><%= @placed_bet.first.coins  %> <%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </p>
+			<p> <span style ="font-size:20px;color:black;">Coins : </span> <span style = "color:#886A08" ><%= @placed_bet.first.coins  %> <%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </p>
 		</div>
-	</div>
+	</div><br><br>
 
 <% end %>
+<div class="row">
+	<div class="col-xs-6 col-md-2">
+	</div>
+	<div class="col-xs-6 col-md-8">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>
+					<td style="font-size:15px;color:red;"><%= @fixture.home_team %></td>
+					<td style="font-size:15px;color:black;">Draw</td>
+					<td style="font-size:15px;color:green;"><%= @fixture.away_team %></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="font-size:15px;color:black;">Total Users</td>
+				  <td style="color:blue;"><%= total_users_bet("home_bets") rescue nil %></td>
+				  <td style="color:blue;"><%= total_users_bet("draw_bets") rescue nil %></td>
+				  <td style="color:blue;"><%= total_users_bet("away_bets") rescue nil %></td>
+				</tr>
+				<tr>
+					<td style="font-size:15px;color:black;">Total Coins</td>
+				  <td style = "color:#886A08"><%= total_coins_bet("home_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td style = "color:#886A08"><%= total_coins_bet("draw_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td style = "color:#886A08"><%= total_coins_bet("away_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
+</div>
+
 
 <h3 align = "center">Comments</h3>
 <br>
@@ -110,8 +141,7 @@
 			<span class ="created_at"><%= comment.created_at.strftime("Commented at %d-%m-%Y %H:%M:%S") %></span>
 		</div>
 		</div>
-	</div>
-</div>
+
 <%end%>
 <% end %>
 <div class = "row">
