@@ -47,10 +47,12 @@ class HomeController < ApplicationController
 
 	def create_comment
 		@bet_fixture = BetFixture.find params[:id]
+		@fixture = @bet_fixture
 		comment = @bet_fixture.comments.create(comment_params)
 		comment.user_id = current_user.id
 		comment.save
-		redirect_to bet_path
+		path = params[:page_number] == "1" ? bet_path : bet_comments_path(@bet_fixture.id)
+		redirect_to path
 	end
 
 	def createbet
@@ -81,6 +83,37 @@ class HomeController < ApplicationController
 				@comment.save	
 			end	
 		respond_to do |format|
+      format.js
+    end
+	end
+
+	def coins_predicted
+	bet_fixture = BetFixture.find params[:bet_fixture_id]
+	bets = bet_fixture.bets
+	home_bets = bets.where(prediction: "home")
+  draw_bets = bets.where(prediction: "draw")
+  away_bets = bets.where(prediction: "away")
+  total_coins = bets.sum(:coins) + params[:coins].to_i
+  home_coins  = home_bets.sum(:coins)
+  draw_coins  = draw_bets.sum(:coins)
+  away_coins  = away_bets.sum(:coins)
+  user_coins = params[:coins].to_i
+
+  if params[:prediction] == "home"
+  		home_coins += params[:coins].to_i
+      user_share = (user_coins.to_f / home_coins.to_f)
+      @user_win_coin = user_share * total_coins
+  elsif params[:prediction] == "draw"
+  	draw_coins += params[:coins].to_i
+      user_share = (user_coins.to_f  / draw_coins.to_f)
+      @user_win_coin = user_share * total_coins
+  elsif params[:prediction] == "away"
+  	away_coins += params[:coins].to_i
+      user_share = (user_coins.to_f  / away_coins.to_f)
+      @user_win_coin = user_share * total_coins
+  end
+	@user_win_coin = @user_win_coin.to_i
+  respond_to do |format|
       format.js
     end
 	end

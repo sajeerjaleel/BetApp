@@ -35,9 +35,9 @@ Rails.application.routes.draw do
     # resources :comments
 
     get '/bet/:id/comments' => 'home#show_comments', as: :bet_comments
-    post '/bet/create_comment/:id' => 'home#create_comment', as: :create_comment
+    post '/bet/create_comment/:id/:page_number' => 'home#create_comment', as: :create_comment
     post 'bet/vote' => 'home#vote', as: :vote
-
+    get '/show/predicted_coins' => 'home#coins_predicted', as: :predicted_coins
 
   #   resources :products
   
