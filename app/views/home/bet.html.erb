@@ -119,52 +119,53 @@
 	</div>
 	<div class="col-md-8">
 		<div class="thumbnail <%=comment.id%>com">
-		<div class= "row">
-			<div class= "col-md-2">
-			<%= display_image(comment.user)%>
+			<div class= "row">
+				<div class= "col-md-2">
+				<%= display_image(comment.user)%>
+				</div>
+				<div class="content col-md-6 thumbnail"><p><%= comment.content%></p>
+				</div>
+				<span class = "comment_right" data-comment="<%=comment.id%>"><%=(image_tag "delete.png", width: "20", height: "20", class: "delete_comment") if comment.user == current_user%></span>
 			</div>
-			<div class="content col-md-6 thumbnail"><p><%= comment.content%></p>
+			<div class="row">
+			<span class="fullname"><%= comment.user.full_name%></span>
+			<span id= "<%= comment.id%>">
+			<span class = "span_right" data-commentid= "<%= comment.id%>">
+			<%= image_tag "green_up.png", width: "20", height: "20", class: "like"+comment.status(current_user)%><%= comment.like%> Likes
+			</span>
+			<span class= "span_down" data-commentid= "<%= comment.id%>">
+			<%= image_tag "red_down.png", width: "20", height: "20", class: "dislike"+comment.status(current_user)%><%= comment.dislike%> Dislikes
+			</span>
+			</span>
+
+				<span class ="created_at"><%= comment.created_at.strftime("Commented at %d-%m-%Y %H:%M:%S") %></span>
 			</div>
-			<span class = "comment_right" data-comment="<%=comment.id%>"><%=(image_tag "delete.png", width: "20", height: "20", class: "delete_comment") if comment.user == current_user%></span>
 		</div>
-		<div class="row">
-		<span class="fullname"><%= comment.user.full_name%></span>
-		<span id= "<%= comment.id%>">
-		<span class = "span_right" data-commentid= "<%= comment.id%>">
-		<%= image_tag "green_up.png", width: "20", height: "20", class: "like"+comment.status(current_user)%><%= comment.like%> Likes
-		</span>
-		<span class= "span_down" data-commentid= "<%= comment.id%>">
-		<%= image_tag "red_down.png", width: "20", height: "20", class: "dislike"+comment.status(current_user)%><%= comment.dislike%> Dislikes
-		</span>
-		</span>
-
-			<span class ="created_at"><%= comment.created_at.strftime("Commented at %d-%m-%Y %H:%M:%S") %></span>
-		</div>
-		</div>
-
+	</div>
+</div>
 <%end%>
 <% end %>
-<div class = "row">
-<%= link_to "See all Comments", bet_comments_path(@fixture.id)%>
-</div>
-
-<div class = "row">
-	<div class = "col-md-2">
-	</div>
-	<div class="col-md-8">
-		<div class="thumbnail">
-			<%= form_for(@comment, url: create_comment_path(@fixture.id), method: :post) do |f| %>
-				<p><div>
-					 Add Comment :
-			    <%= f.text_area :content, class: "form-control",rows: "3"%>
-			  </div></p>
-			  <%= f.submit "comment", class: "btn btn-primary" %>
-
-			<% end %>
+		<div class = "row">
+			<%= link_to "See all Comments", bet_comments_path(@fixture.id)%>
 		</div>
-	</div>
 
-</div>
+		<div class = "row">
+			<div class = "col-md-2">
+			</div>
+			<div class="col-md-8">
+				<div class="thumbnail">
+					<%= form_for(@comment, url: create_comment_path(@fixture.id), method: :post) do |f| %>
+					<p><div>
+						 Add Comment :
+				    <%= f.text_area :content, class: "form-control",rows: "3"%>
+				  </div></p>
+				  <%= f.submit "comment", class: "btn btn-primary" %>
+
+				<% end %>
+				</div>
+			</div>
+		</div>
+
 
 <script type="text/javascript">
   var specialKeys = new Array();
