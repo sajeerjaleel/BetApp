@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get  '/home/:id/bet' => 'home#bet', as: :bet
   post 'home/bet/:id/create' => 'home#createbet', as: :createbet
   get  '' => 'home#index'
+  get '/delete/comment' => 'home#delete_comment', as: :delete_comment
+  get '/bet/:id/comments' => 'home#comments', as: :comments
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
@@ -30,7 +32,7 @@ Rails.application.routes.draw do
     resources :admins
     get  '/remove_bets' => 'admins#remove_bets', as: :remove_bets
     resources :bet_matches
-    resources :comments
+    # resources :comments
 
     get '/bet/:id/comments' => 'home#show_comments', as: :bet_comments
     post '/bet/create_comment/:id' => 'home#create_comment', as: :create_comment

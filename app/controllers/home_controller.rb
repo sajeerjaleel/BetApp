@@ -16,12 +16,26 @@ class HomeController < ApplicationController
 		@results = Result.all
 	end
 
+	def delete_comment
+		@comment = Comment.find params[:comment_id]
+		@comment.destroy
+		respond_to do |format|
+      format.js
+    end
+	end
+
 	def table
 		@epldata = Table.all
 		@a = 0
 		@count = 1
 	end
 
+	def comments
+		@comment = Comment.new
+		@fixture = BetFixture.find params[:id]
+		@bet_comments = @fixture.comments.order('created_at DESC').page(params[:page]).per(10)
+	end
+	
 	def bet
 		@fixture = BetFixture.find (params[:id])
 		@placed_bet = Bet.where(bet_fixture_id: params[:id], user_id: current_user.id)
