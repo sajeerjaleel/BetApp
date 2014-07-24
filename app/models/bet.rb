@@ -5,4 +5,9 @@ class Bet < ActiveRecord::Base
 	validates :user_id, :uniqueness => {:scope => :bet_fixture_id}
 
 	validates :coins, :presence => true, :numericality => {:only_integer => true}
+
+	def self.fetch_bet(type)
+		where(prediction: type)
+	end
+
 end

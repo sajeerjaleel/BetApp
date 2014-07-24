@@ -19,8 +19,6 @@
 			<strong><p align="center" style="color:black;"><%= @fixture.away_team %></p></strong>
 	</div>
 </div>
-<br><br>
-
 
 <% unless placed_bet %>
 
@@ -122,6 +120,14 @@
 	</div>
 </div>
 </div>
+<div class = "row">
+<div class ="col-md-1"></div>
+ <div class ="col-md-10">
+	<%= line_chart @predictions.map{|prediction|
+    {name: prediction, data: @fixture.bets.fetch_bet(prediction).group_by_day(:created_at).count}
+		}, colors: ["pink", "#999"] %>
+</div>
+</div>
 
 <% unless @bet_comments.empty? %>
 <h3 align = "center">Comments</h3>
@@ -182,6 +188,7 @@
 			</div>
 		</div>
 
+		
 
 <script type="text/javascript">
   var specialKeys = new Array();

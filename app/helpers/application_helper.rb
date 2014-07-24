@@ -89,6 +89,11 @@ module ApplicationHelper
 		end
 	end
 
+	def team(pred)
+		a = pred == "draw" ? "" : pred + "_team"
+		a
+	end
+
 	def result 
     @fixture = BetFixture.find params[:id]
     @bets    = @fixture.bets

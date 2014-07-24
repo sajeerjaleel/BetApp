@@ -6,4 +6,5 @@ class BetFixture < ActiveRecord::Base
 	def bet_data
 		date + " " + time + " " + home_team + " vs " + away_team
 	end
+
 end
