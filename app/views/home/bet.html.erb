@@ -117,11 +117,10 @@
 </div>
 </div>
 
-
+<% unless @bet_comments.empty? %>
 <h3 align = "center">Comments</h3>
 <br>
-<p class = "right">Showing last 5 comments</p>
-<% unless @bet_comments.empty? %>
+
 <% @bet_comments.each do |comment|%>
 <div class = "row">
 	<div class = "col-md-2">
@@ -155,7 +154,9 @@
 <%end%>
 <% end %>
 		<div class = "row">
-			<%= link_to "See all Comments", bet_comments_path(@fixture.id), class: "a_right"%>
+		<% unless @bet_comments.empty? %>
+			<%= link_to "See all Comments", bet_comments_path(@fixture.id), class: "a_right" %>
+		<% end %>
 		</div>
 
 		<div class = "row">
