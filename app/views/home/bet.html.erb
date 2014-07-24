@@ -111,6 +111,12 @@
 				  <td style = "color:#886A08"><%= total_coins_bet("draw_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				  <td style = "color:#886A08"><%= total_coins_bet("away_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				</tr>
+				<tr>
+					<td style="font-size:15px;color:black;">Highest Bet</td>
+				  <td style = "color:#886A08"><%= @home_max || "0" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td style = "color:#886A08"><%= @draw_max || "0" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td style = "color:#886A08"><%= @away_max || "0" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

@@ -39,6 +39,9 @@ class HomeController < ApplicationController
 	def bet
 		@fixture = BetFixture.find (params[:id])
 		@fixture_bets = @fixture.bets
+		@home_max = @fixture_bets.where(prediction: "home").maximum(:coins)
+		@away_max = @fixture_bets.where(prediction: "away").maximum(:coins)
+		@draw_max = @fixture_bets.where(prediction: "draw").maximum(:coins)
 		@placed_bet = Bet.where(bet_fixture_id: params[:id], user_id: current_user.id)
 		@bet = Bet.new
 		@comment = Comment.new

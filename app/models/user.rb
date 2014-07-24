@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   	elsif first_name != "" && first_name != nil
   		first_name
   	else
-  		"Anonymous"
+  		"Drunken Monk"
   	end
   end
   
