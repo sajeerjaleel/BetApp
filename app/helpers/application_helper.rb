@@ -69,24 +69,45 @@ module ApplicationHelper
 		@draw_bets = @fixture_bets.where(prediction: "draw")
 		@away_bets = @fixture_bets.where(prediction: "away")
 		if type == "home_bets"
-			coin = 0
-			@home_bets.each do |bet|
-				coin = coin + bet.coins
-			end
+			coin =@home_bets.sum(:coins)
 			return coin
 		elsif type == "draw_bets"
-			coin = 0
-			@draw_bets.each do |bet|
-				coin = coin + bet.coins
-			end
+			coin =@draw_bets.sum(:coins)
 			return coin
 		else
-			coin = 0
-			@away_bets.each do |bet|
-				coin = coin + bet.coins
-			end
+			coin =@away_bets.sum(:coins)
 			return coin
 		end
+	end
+
+	def result
+		@fixture = BetFixture.find params[:id]
+		@bets    = @fixture.bets
+		@user    = current_user
+		@user_bets = current_user.bets.where(bet_fixture_id: @fixture.id)
+		@user_bet = @user_bets.first.prediction
+		
+		@home_bets = @bets.where(prediction: "home")
+		@draw_bets = @bets.where(prediction: "draw")
+		@away_bets = @bets.where(prediction: "away")
+
+		@total_coins = @bets.sum(:coins)
+		@user_coins  = @user_bets.first.coins
+		@home_coins  = @home_bets.sum(:coins)
+		@draw_coins  = @draw_bets.sum(:coins)
+		@away_coins  = @away_bets.sum(:coins)
+
+		if @user_bet == "home"
+			@user_share = (@user_coins.to_f / @home_coins.to_f)
+			@user_win_coin = @user_share * @total_coins
+		elsif @user_bet == "draw"
+			@user_share = (@user_coins.to_f  / @draw_coins.to_f)
+			@user_win_coin = @user_share * @total_coins
+		elsif @user_bet == "away"
+			@user_share = (@user_coins.to_f  / @away_coins.to_f)
+			@user_win_coin = @user_share * @total_coins
+		end
+		return @user_win_coin.to_i
 	end
 
 end

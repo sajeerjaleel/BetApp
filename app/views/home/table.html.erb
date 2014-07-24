@@ -20,7 +20,7 @@
 		  	<% @epldata.each do |a| %>
 		  		<% if @a < 4 %>
 		  			<% if a.team == "Man Utd"%>
-		  				<tr style="background-color:#610B21;color:white;">
+		  				<tr>
 		  			<% else %>
 			  			<tr>
 			  		<% end %>
@@ -39,7 +39,7 @@
 			  		<% @count = @count+1 %>
 			  	<% elsif @count == 18 %>
 			  		<% if a.team == "Man Utd"%>
-		  				<tr style="color:black;">
+		  				<tr>
 		  			<% else %>
 			  			<tr>
 			  		<% end %>
@@ -56,7 +56,7 @@
 			  		</tr>
 			  	<% else %>
 			  	<% if a.team == "Man Utd"%>
-		  				<tr style="color:white;">
+		  				<tr>
 		  			<% else %>
 			  			<tr>
 			  		<% end %>
