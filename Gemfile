@@ -31,6 +31,10 @@ gem 'devise'
 
 gem "kaminari"
 
+gem 'groupdate', '~> 2.2.1'
+
+gem "chartkick"
+
 gem 'nokogiri'
 
 gem 'rolify'
