@@ -4,8 +4,8 @@ class HomeController < ApplicationController
 	end
 
 	def new
-		@count = BetMatch.count
 		@matches = BetMatch.where('completed = ? and done = ?', false, false)
+		@count = @matches.count
 	end
 
 	def fixtures

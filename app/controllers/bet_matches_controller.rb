@@ -13,8 +13,12 @@ class BetMatchesController < ApplicationController
 	end
 
 	def update
-		@bet_match = BetMatch.find params[:id]
+		@bet_match = BetMatch.find params[:id] 
 		@bet_match.update_attributes(bet_match_params)
+		if @bet_match.done == true
+			BetMatch.result(@bet_match.bet_fixture,params[:bet_match][:bet_fixture_attributes][:result])
+		end
+
 		redirect_to admins_path
 	end
 

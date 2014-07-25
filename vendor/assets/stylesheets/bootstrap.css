@@ -306,7 +306,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: white;
+  color: black;
   background-color: #ffffff;
   background-image: url("wallpaper.jpg");
   background-size: cover;
@@ -790,7 +790,7 @@ pre code {
   margin-left: auto;
 }
 .container-narrow{
-  background-color: rgba(255,255,255,0.4);
+  background-color: rgba(255,255,255,0.8);
   max-width: auto;
   max-height: auto;
   padding-top: 50px;

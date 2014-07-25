@@ -69,25 +69,17 @@ module ApplicationHelper
 		@draw_bets = @fixture_bets.where(prediction: "draw")
 		@away_bets = @fixture_bets.where(prediction: "away")
 		if type == "home_bets"
-			coin = 0
-			@home_bets.each do |bet|
-				coin = coin + bet.coins
-			end
+			coin =@home_bets.sum(:coins)
 			return coin
 		elsif type == "draw_bets"
-			coin = 0
-			@draw_bets.each do |bet|
-				coin = coin + bet.coins
-			end
+			coin =@draw_bets.sum(:coins)
 			return coin
 		else
-			coin = 0
-			@away_bets.each do |bet|
-				coin = coin + bet.coins
-			end
+			coin =@away_bets.sum(:coins)
 			return coin
 		end
 	end
+
 
 	def team(pred)
 		a = pred == "draw" ? "" : pred + "_team"
@@ -123,6 +115,5 @@ module ApplicationHelper
     end
     return @user_win_coin.to_i
   end
-
 
 end
