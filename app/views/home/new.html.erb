@@ -41,7 +41,7 @@
 		      	<div class="col-xs-4 col-md-5">
 			    	</div>
 			    	<div class="col-xs-8 col-md-4">
-		      		<%= button_to "Bet", bet_path(@matches[i].bet_fixture.id), :class => "btn btn-success", :method => "get" %>
+		      		<%= button_to "Bet", bet_path(@matches[0].bet_fixture.id), :class => "btn btn-success", :method => "get" %>
 		      	</div>
 		      </div>
 		    </div>
@@ -115,7 +115,7 @@
 							  <td><%= bet.bet_fixture.home_team %> vs 
 							  		<%= bet.bet_fixture.away_team %></td>
 							  <td class="coin_text"><%= bet.coins %><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></td>
-							  <td class="coin_text"><%= bet.coins_won %><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></td>
+							  <td class="coin_text"><%= bet.coins_won || 0 %><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></td>
 							</tr>
 						<% end %>
 					</tbody>
