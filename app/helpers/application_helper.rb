@@ -2,9 +2,9 @@ module ApplicationHelper
 
 	def display_image(user)
 		if user.image
-			"<img class=\"img-circle\" src=\"data:image/jpeg;base64,#{user.image}\" style= \"height: 80px; width: 100px;\">".html_safe
+			"<img class=\"img-circle\" src=\"data:image/jpeg;base64,#{user.image}\" style= \"height: 50px; width: 50px;\">".html_safe
 		else
-			image_tag "avatar.png", height: "80", width: "100"
+			image_tag "avatar.png", height: "50", width: "50"
 		end
 	end
 
