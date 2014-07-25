@@ -126,9 +126,10 @@
  <div class ="col-md-10">
 	<%= line_chart @predictions.map{|prediction|
     {name: prediction, data: @fixture.bets.fetch_bet(prediction).group_by_day(:created_at).count}
-		}, colors: ["pink", "#999"] %>
+		}, colors: ["pink", "#999"], {library: {hAxis: {title: "Days"}, vAxis: {title: "No of Bets"}}}  %>
 </div>
 </div>
+<br>
 
 <% unless @bet_comments.empty? %>
 <h3 align = "center">Comments</h3>
