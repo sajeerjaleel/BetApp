@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
  before_filter :authenticate_user!, :except => ["index"]
+
 	def index
+	 	@team_coins= []
+	 	@team_users = []
+  	Team.includes(:users).all.collect{|t| @team_coins << [t.team_name, t.users.collect(&:coins).sum]}.inspect 
+  	Team.includes(:users).all.collect{|t| @team_users << [t.team_name, t.users.count]}.inspect 	
+		@users = User.where('team_id IS NOT NULL')
 	end
 
 	def new

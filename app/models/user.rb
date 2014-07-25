@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :team
+  belongs_to :team
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy
 

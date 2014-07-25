@@ -116,4 +116,8 @@ module ApplicationHelper
     return @user_win_coin.to_i
   end
 
+  def team_name(id)
+  	team = Team.find id
+  	team.team_name
+  end
 end

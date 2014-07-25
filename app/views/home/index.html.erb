@@ -1,0 +1,77 @@
+<br>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div id= "container" class="pie col-md-5">
+	</div>
+	<div id= "team_user" class="pie col-md-5">
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+    var chart;
+    
+    $(document).ready(function () {
+    	
+    	// Build the chart
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Team Coin Shares'
+            },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Team Coins Shares',
+                data: <%= raw @team_coins %>
+        }]
+        });
+
+        $('#team_user').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Team Users Shares'
+            },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Team Users Shares',
+                data: <%= raw @team_users %>
+        }]
+        });
+    });
+    
+});
+</script>
+ 
