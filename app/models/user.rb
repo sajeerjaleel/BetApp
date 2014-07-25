@@ -18,5 +18,9 @@ class User < ActiveRecord::Base
   		"Drunken Monk"
   	end
   end
+
+  def updated?
+    first_name != "" && last_name != "" && nick_name != nil && image != nil 
+  end
   
 end
