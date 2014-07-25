@@ -126,7 +126,9 @@
  <div class ="col-md-10">
 	<%= line_chart @predictions.map{|prediction|
     {name: prediction, data: @fixture.bets.fetch_bet(prediction).group_by_day(:created_at).count}
-		}, colors: ["pink", "#999"], {library: {hAxis: {title: "Days"}, vAxis: {title: "No of Bets"}}}  %>
+		},  { height: "400px",library: { title: {
+            text: 'Betting Rate'
+        },yAxis: {title: {text: 'No of Bets' }}, xAxis: {title: {text: 'Days' }}}}  %>
 </div>
 </div>
 <br>

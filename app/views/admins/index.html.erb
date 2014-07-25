@@ -2,7 +2,12 @@
 <%= link_to "Edit Bets" , bet_matches_path%>
 <%= link_to "Remove All Bets" , remove_bets_path, id: "remove_bets"%>
 <br>
-<% @bet_matches.each do |bet_match|%>
-	<%= bet_match.bet_fixture_id %>
-	<br>
-	<% end %>
+<%= line_chart User.group_by_day(:created_at).count,
+{ height: "400px",library: { title: {
+            text: 'Users ('+ User.count.to_s+')'
+        },yAxis: {title: {text: 'No of Users' }}, xAxis: {title: {text: 'Days' }}}} %>
+<br>
+<%= column_chart Bet.group_by_day(:created_at).count,
+{ height: "400px",library: { title: {
+            text: 'Bets ('+ Bet.count.to_s+')'
+                    },yAxis: {title: {text: 'No of Bets' }}, xAxis: {title: {text: 'Days' }}}} %>
