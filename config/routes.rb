@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/delete/comment' => 'home#delete_comment', as: :delete_comment
   get '/bet/:id/comments' => 'home#comments', as: :comments
   get '/bet/results' => 'home#bet_results', as: :bet_results
+  get '/leagues' => 'leagues#index', as: :leagues
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

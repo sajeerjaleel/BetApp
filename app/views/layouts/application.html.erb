@@ -51,18 +51,15 @@
 	            <li>
 	            <%= link_to "Bet History", bet_history_path%>
 	            </li>
-	            <% end %>
+	            
+	               <li><%= link_to "Leagues", leagues_path %></li>
 
 	            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, title: "Logout" %></li>
+
 
 	          </ul>
 		        	<!-- /.nav -->
 
-		        <% if current_user %>
-		          <div style="margin-left:1000px;margin-top:5px;">
-		            <%= display_image(current_user) %>
-		             <%= current_user.nick_name %>
-		          </div>
 	          <% end %>
 
 		      </div>
@@ -70,6 +67,7 @@
 		    </nav>
 		      <!-- /.navbar -->
 		  </header>
+
 
 	    <div class="container">
 
@@ -83,12 +81,18 @@
 					<p class="alert alert-danger alert-dismissible" role="alert" ><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= alert %></p>
 				<% end %>
 
+
 				<% if current_user %>
 					<div class="row">
-						<div class="col-xs-2 col-md-10">
+						<div class = "col-md 2">
+		            <%= display_image(current_user) %>
+			          <%= current_user.nick_name %>
 						</div>
-						<div class="col-xs-4 col-md-2">
-							<p class="gold" style="float:right;"><%= image_tag "coins.png" , :width => "30px", :height => "30px" %>
+						<div class="col-md-10">
+						</div>
+						<div class="col-md-2">
+							<p class="gold" style="float:right;margin-top: -80px;
+"><%= image_tag "coins.png" , :width => "30px", :height => "30px" %>
 							<%= current_user.coins %></p>
 						</div>
 					</div>
