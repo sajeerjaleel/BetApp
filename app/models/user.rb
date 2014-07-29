@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   belongs_to :team
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_leagues
+  has_many :leagues, through: :user_leagues
 
   def full_name
   	if nick_name != "" && nick_name != nil
