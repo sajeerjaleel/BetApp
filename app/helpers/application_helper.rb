@@ -120,4 +120,5 @@ module ApplicationHelper
   	team = Team.find id
   	team.team_name
   end
+
 end

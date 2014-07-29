@@ -55,10 +55,11 @@
 <% end %>
 
 
-
+<% unless @bet_comments.empty?%>
 <div align = center class="row">
     <div><%= paginate @bet_comments, :outer_window => 1 %></div>
 </div>
+<% end %>
 
  <script type="text/javascript">
  	

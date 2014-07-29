@@ -15,12 +15,20 @@ class User < ActiveRecord::Base
   	elsif first_name != "" && first_name != nil
   		first_name
   	else
-  		"Drunken Monk"
+  		email
   	end
   end
 
   def updated?
     first_name != "" && last_name != "" && nick_name != nil && image != nil 
+  end
+
+  def fav_team
+    if team
+      fav = team.team_name
+    else
+      fav = "not selected"
+    end
   end
   
 end

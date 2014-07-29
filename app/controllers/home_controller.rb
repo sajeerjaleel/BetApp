@@ -22,6 +22,11 @@ class HomeController < ApplicationController
 		@results = Result.all
 	end
 
+	def bet_results
+		@users = User.order("coins DESC").page(params[:page]).per(10)
+	end
+
+
 	def delete_comment
 		@comment = Comment.find params[:comment_id]
 		@comment.destroy
@@ -127,6 +132,7 @@ class HomeController < ApplicationController
       format.js
     end
 	end
+
 
 	private
 

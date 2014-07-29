@@ -1,0 +1,30 @@
+<% unless @users.empty?%>
+<div class = "thumbnail">
+<h2 align = center>Results</h2>
+</div>
+<div align = center class = "thumbnail">
+<h6 style = "color:black;">Your Position : <%= (@users.index(current_user))+1%></h6>
+<table class="table table-bordered" style="width:800px">
+	<tr>
+	  <td>Position</td>
+	  <td>Nick Name</td> 
+	  <td>Team</td>
+	  <td>Coins</td>
+	</tr>
+	<% @users.each do |user|%>
+	<tr>
+	  <td><%= (@users.index(user))+1%></td>
+	  <td><%= user.full_name %></td> 
+	  <td><%= user.fav_team %></td>
+	  <td><%= user.coins %></td>
+	</tr>
+	<% end%>
+</table>
+</div>
+<% end %>
+
+<% unless @users.empty?%>
+<div align = center class="row">
+    <div><%= paginate @users, :outer_window => 1 %></div>
+</div>
+<% end %>

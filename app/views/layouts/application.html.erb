@@ -39,6 +39,19 @@
 	            <li>
 	              <a href="/results">Results</a>
 	            </li>
+	            <%if current_user %>
+	            <li>
+	            <%= link_to "Edit Profile",  edit_user_path(current_user)%>
+	            </li>
+
+
+	            <li>
+	              <%= link_to "Bet Results",  bet_results_path%>
+	            </li>
+	            <li>
+	            <%= link_to "Bet History", bet_history_path%>
+	            </li>
+	            <% end %>
 
 	            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, title: "Logout" %></li>
 
