@@ -1,24 +1,47 @@
 <br>
-<div class = "thumbnail">
-	<h1 style="color: black" align= "center"> All Leagues</h1>
+<div class="row">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4">
+    <%= form_tag leagues_path, :method => 'get'  do %>
+      <p>
+        <%= text_field_tag :search, params[:search], placeholder: "League Name" %>
+        <%= submit_tag "search leaues", :name => nil%>
+      </p>
+    <% end %>
+  </div>  
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= link_to "Create League", new_league_path%>
+  </div>
+  <div class = "thumbnail col-md-8">
+  	<h1 style="color: black" align= "center"> All Leagues
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class = "col-md-2">
+  </div>
+  <% unless @leagues.empty? %>
+    <div class = "col-md-8">
+      <ul class="list-group">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul>
+    </div>
+  <% else %>
+    <div class = "col-md-8">
+      <h3 align="center" style="color: black"> No Leagues Found...</h3>  
+    </div>  
+  <% end %>  
 </div>
 
-<ul class="list-group">
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-</ul>
-<%= form_tag leagues_path, :method => 'get'  do %>
-    <p>
-      <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-      <%= submit_tag "", :name => nil, :class => "search-icon"%>
-    </p>
-    <% end %>
-
-    <% unless @leagues.empty?%>
-			<div align = center class="row">
-			    <div><%= paginate @leagues, :outer_window => 1 %></div>
-			</div>
-		<% end %>
+<% unless @leagues.empty? %>
+	<div align = center class="row">
+	    <div><%= paginate @leagues, :outer_window => 1 %></div>
+	</div>
+<% end %>

@@ -1,12 +1,13 @@
 class League < ActiveRecord::Base
 	has_many :user_leagues
 	has_many :users, through: :user_leagues
+  validates :name, presence: true ,:uniqueness => true
 
 	def self.search(search)
     if search
       where('LOWER(name) LIKE ?', "%#{search.downcase}%")
     else
-      scoped
+      all
     end
   end
 

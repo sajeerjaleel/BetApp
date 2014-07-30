@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
+
 gem "kaminari"
 
 gem 'groupdate', '~> 2.2.1'

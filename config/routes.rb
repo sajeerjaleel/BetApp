@@ -32,10 +32,11 @@ Rails.application.routes.draw do
 
     resources :users
     resources :admins
+    resources :leagues
     get  '/remove_bets' => 'admins#remove_bets', as: :remove_bets
     resources :bet_matches
     # resources :comments
-
+    post '/league/create' => 'leagues#create_league', as: :create_league 
     get '/bet/:id/comments' => 'home#show_comments', as: :bet_comments
     post '/bet/create_comment/:id/:page_number' => 'home#create_comment', as: :create_comment
     post 'bet/vote' => 'home#vote', as: :vote

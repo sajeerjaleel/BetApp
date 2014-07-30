@@ -1,0 +1,27 @@
+<% if flash[:error] %>
+	<div class="alert alert-warning alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">
+	  	<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+	  </button>
+  	<%= flash[:error] %>
+	</div>
+<% end %>
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class = "thumbnail col-md-8" align = "center" >Create League</div>
+</div>
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class= "thumbnail col-md-8" align= "center">
+		<%= form_for(@league, url: create_league_path, method: :post) do |f| %>
+			<p>
+				<div>
+					League Name :
+			    <%= f.text_field :name, placeholder: "League Name"%>
+			  </div>
+		  </p>
+		<%= f.submit "Create" %>
+
+		<% end %>
+	</div>
+</div>
