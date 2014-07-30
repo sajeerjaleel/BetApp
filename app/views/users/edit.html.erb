@@ -1,6 +1,9 @@
-<div class = "thumbnail" align = "center" >Update your profile, <%= @user.email%></div>
-
-<div class= "thumbnail" align= "center">
+<div class="row">
+	<div class="col-md-2">
+	</div>
+		<div class = "thumbnail col-md-8" align = "center" ><strong>Update your profile, <%= @user.email%></strong></div>
+</div>
+<div class= "container-narrow" align= "center">
 <%= form_for(@user, url: user_path(@user.id), method: :put) do |f| %>
 	<p><div>
 		First Name :

@@ -1,26 +1,8 @@
-<br>
-<div class="row">
-  <div class="col-md-8">
-  </div>
-  <div class="col-md-4">
-    <%= form_tag leagues_path, :method => 'get'  do %>
-      <p>
-        <%= text_field_tag :search, params[:search], placeholder: "League Name" %>
-        <%= submit_tag "search leaues", :name => nil%>
-      </p>
-    <% end %>
-  </div>  
-</div>
 <div class="row">
   <div class="col-md-2">
-    <ul class="nav nav-pills">
-      <li><%= link_to "Create League", new_league_path%></li>
-      <li><%= admin_prevs(current_user) %></li>
-      <li><%= (link_to "My Leagues", "#") unless current_user.leagues.count == 0%></li>
-    </ul>
   </div>
   <div class = "back-grey col-md-8">
-  	<h1 style="color: black" align= "center"> All Leagues
+  	<h1 style="color: black" align= "center"> Leagues you own
     </h1>
   </div>
 </div>
@@ -29,7 +11,7 @@
   </div>
   <% unless @leagues.empty? %>
     <div align = center class = "back-grey col-md-8">
-    <table class="table table-bordered index" style="max-width:760px">
+    <table class="table table-bordered index" style="max-width:800px">
       <tr>
         <td>Sl.no</td>
         <td>Name</td> 
@@ -39,7 +21,7 @@
       <% @leagues.each do |league|%>
       <tr>
         <td><%= (@leagues.index(league))+1%></td>
-        <td><%= link_to league.name, league_path(league.id) %></td> 
+        <td><%= link_to league.name,  admin_show_league_path(league.id) %></td> 
         <td><%= league.users.count %></td>
         <td><%= league.users.sum(:coins) %></td>
       </tr>
@@ -52,8 +34,9 @@
     </div>  
   <% end %>  
 </div> 
+
 <% unless @leagues.empty? %>
 	<div align = center class="row">
 	    <div><%= paginate @leagues, :outer_window => 1 %></div>
 	</div>
-<% end %>
+<% end %>		

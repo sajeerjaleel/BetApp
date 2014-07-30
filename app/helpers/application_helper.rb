@@ -21,6 +21,10 @@ module ApplicationHelper
 		image_name+".png"
 	end
 
+	def join_league(user)
+		 (link_to "Join Leage", "#") unless @league.users.include?(user)
+	end
+
 	def away_image(bet_match)
 		image_name = bet_match.bet_fixture.away_team
 		image_name+".png"
@@ -120,5 +124,18 @@ module ApplicationHelper
   	team = Team.find id
   	team.team_name
   end
+
+  def admin_prevs(user)
+  	(link_to "Admin Portal", admin_portal_path) if user.has_admin_prev
+  end
+
+  def remove_user(user)
+  	unless @league.admin_id == user.id 
+  		link_to "Remove User", remove_user_path(league_id: @league.id,user_id: user.id) ,method: "delete", 
+		  class: "remove"
+		else
+			"N/A"
+		end
+	end
 
 end

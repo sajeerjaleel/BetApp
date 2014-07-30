@@ -1,0 +1,48 @@
+<% unless @toppers.empty?%>
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class = "back-grey col-md-8">
+		<h3 align = center style="color:black;">Users in <%= @league.name %></h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-2">
+		<%= join_league(current_user)%>
+	</div>
+	<div align = center class = "back-grey col-md-8">
+	<table class="table table-bordered" style="max-width:760px">
+		<tr>
+		  <td>Position</td>
+		  <td>Nick Name</td> 
+		  <td>Team</td>
+		  <td>Coins</td>
+		  <td>Remove User</td>
+		</tr>
+		<% @toppers.each do |topper|%>
+		<tr>
+		  <td><%= (@toppers.index(topper))+1%></td>
+		  <td><%= topper.full_name %></td> 
+		  <td><%= topper.fav_team %></td>
+		  <td><%= topper.coins %></td>
+		  <td class="last-td"><%= remove_user(topper) %></td>
+		</tr>
+		<% end%>
+	</table>
+	</div>
+</div>
+<% end %>
+
+<% unless @toppers.empty? %>
+	<div align = center class="row">
+	    <div><%= paginate @toppers, :outer_window => 1 %></div>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+$(function(){
+$( ".remove" ).each(function() {
+  $(this).attr('data-confirm', "Are you sure?");
+});	
+})
+</script>

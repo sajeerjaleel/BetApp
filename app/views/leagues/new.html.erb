@@ -8,19 +8,22 @@
 <% end %>
 <div class="row">
 	<div class="col-md-2"></div>
-	<div class = "thumbnail col-md-8" align = "center" >Create League</div>
+	<div class = "back-grey col-md-8" align = "center" >Create League</div>
 </div>
 <div class="row">
 	<div class="col-md-2"></div>
-	<div class= "thumbnail col-md-8" align= "center">
+	<div class= "back-grey col-md-8" align= "center">
 		<%= form_for(@league, url: create_league_path, method: :post) do |f| %>
 			<p>
 				<div>
 					League Name :
-			    <%= f.text_field :name, placeholder: "League Name"%>
+			    <%= f.text_field :name, placeholder: "League Name", id: "leag_name"%>
+			    <span class = "error">
+			    	&nbsp
+			    </span>
 			  </div>
 		  </p>
-		<%= f.submit "Create" %>
+		<%= f.submit "Create", id: "create" %>
 
 		<% end %>
 	</div>

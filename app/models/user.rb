@@ -32,5 +32,10 @@ class User < ActiveRecord::Base
       fav = "not selected"
     end
   end
+
+  def has_admin_prev
+    leagues = League.where(admin_id: id)
+    has_prev = leagues.count == 0 ? false : true
+  end
   
 end
