@@ -1,3 +1,4 @@
+<div class="container container-custom" style="min-height:650px;">
 <div class="row">
   <div class="col-md-2">
   </div>
@@ -17,6 +18,7 @@
         <td>Name</td> 
         <td>Users</td>
         <td>Coins</td>
+        <td>my pos</td>
       </tr>
       <% @leagues.each do |league|%>
       <tr>
@@ -24,6 +26,7 @@
         <td><%= link_to league.name, league_path(league.id) %></td> 
         <td><%= league.users.count %></td>
         <td><%= league.users.sum(:coins) %></td>
+        <td><%= league.my_pos(current_user) %></td>
       </tr>
       <% end%>
     </table>
@@ -39,3 +42,4 @@
 	    <div><%= paginate @leagues, :outer_window => 1 %></div>
 	</div>
 <% end %>
+</div>

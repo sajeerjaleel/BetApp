@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-	
+	 before_filter :authenticate_user!
 	def index
 		@leagues = League.includes(:users).sort_by_user(params[:page],params[:search])
 	end

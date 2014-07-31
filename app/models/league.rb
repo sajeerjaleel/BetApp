@@ -32,4 +32,9 @@ class League < ActiveRecord::Base
     Kaminari.paginate_array(self.search(search).sort_by(&:users_count).reverse).page(page).per(10)
   end
 
+  def my_pos(user)
+    u = self.users.order("coins DESC")
+    u.index(user)+1
+  end
+
 end
