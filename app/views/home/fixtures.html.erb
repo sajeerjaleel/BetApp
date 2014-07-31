@@ -1,7 +1,7 @@
 <div class="container">
-	<legend><h2>Premier League Fixtures</h2></legend>
+	<legend><h2 style="color:black;">Premier League Fixtures</h2></legend>
 	<div class="table-responsive">
-		<table class="table table-condensed">
+		<table class="table table-bordered back-grey">
 		  <% @fixtures.each do |a| %>
 		  	<% if a.date != "" %>
 			  	<thead>
@@ -12,7 +12,7 @@
 			  <% end %>
 			  <% if a.time and a.teams != ""%>
 			  	<tbody>
-					  <tr style="background-color:#CED8F6; color:#0B0B3B;">
+					  <tr style="color:#0B0B3B;">
 					  	<td class="text-center"><em><%= a.time %></em></td>
 					  	<td class="text-center"><b><%= a.teams %></b></td>
 					  	<td class="text-center"><em><%= a.location %></em></td>
