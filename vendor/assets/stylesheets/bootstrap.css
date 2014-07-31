@@ -6362,6 +6362,8 @@ button.close {
   display: none;
   -webkit-transition: 0.6s ease-in-out left;
           transition: 0.6s ease-in-out left;
+  /*custom*/
+  min-height: 625px;
 }
 
 .carousel-inner > .item > img,
@@ -7142,7 +7144,7 @@ td.visible-print {
 }
 .gold{
   color: #D5AD6D;
-  font-size: 30px;
+  font-size: 21px;
   font-weight: 700;
         
     background: -webkit-linear-gradient(transparent, transparent),

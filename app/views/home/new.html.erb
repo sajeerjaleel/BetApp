@@ -1,84 +1,59 @@
-<div class="container-narrow">
-<div class="row">
-	<div class="col-xs-4 col-md-2">
-	</div>
-  <div class="col-xs-12 col-md-8">
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
-		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		   	<% for i in 1...@count %>
-		    <li data-target="#carousel-example-generic" data-slide-to="#{i}"></li>
-		  	<% end %>
-		  </ol>
+   <div style="min-height:625px;">
+    <section id="main-slider" class="no-margin">
+      <div class="carousel slide wet-asphalt">
+        <ol class="carousel-indicators">
+          <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+          <% for i in 1...@count %>
+          	<li data-target="#main-slider" data-slide-to="#{i}"></li>
+          <% end %>
+        </ol>
 
-		  <!-- Wrapper for slides -->
+        <% unless @matches.empty? %>
 
-		  <% unless @matches.empty? %>
+          <div class="carousel-inner">
+            <div class="item active" style="background-image: url(<%= @matches.first.bet_fixture.home_team.gsub(" ","") + '.jpg' %>)">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-6 hidden-xs animation animated-item-4">
+                    <div class="centered">
+                      <div class="embed-container">
+                        <%= link_to (image_tag "#{@matches.first.bet_fixture.home_team}.png", class: "slider-image"), bet_path(@matches.first.bet_fixture.id) %>
+                        <%= link_to (image_tag "#{@matches.first.bet_fixture.away_team}.png", class: "slider-image"), bet_path(@matches.first.bet_fixture.id)  %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--/.item-->
 
-		  <div class="carousel-inner">
+            <% for i in 1...@count %>
+	            <div class="item" style="background-image: url(<%= @matches[i].bet_fixture.home_team.gsub(" ","") + '.jpg' %>)">
+	              <div class="container">
+	                <div class="row">
+	                  <div class="col-sm-6 hidden-xs animation animated-item-4">
+	                    <div class="centered">
+	                      <div class="embed-container">
+	                        <%= link_to (image_tag "#{@matches[i].bet_fixture.home_team}.png", class: "slider-image"), bet_path(@matches[i].bet_fixture.id)  %>
+	                        <%= link_to (image_tag "#{@matches[i].bet_fixture.away_team}.png", class: "slider-image"), bet_path(@matches[i].bet_fixture.id)   %>
+	                      </div>
+	                    </div>
+                  	</div>
+	                </div>
+	              </div>
+	            </div><!--/.item-->
+            <% end %>
+          </div><!--/.carousel-inner-->
 
-		    <div class="item active">
-		    	<div class = "row">
-			    	<div class="col-xs-4 col-md-2">
-			    	</div>
-			    	<div class="col-xs-8 col-md-4">
-					    <div class="thumbnail">
-					      <%= image_tag "#{@matches.first.bet_fixture.home_team}.png" %>
-					    </div>
-					  </div>
-					  <div class="col-xs-8 col-md-4">
-					    <div class="thumbnail">
-					      <%= image_tag "#{@matches.first.bet_fixture.away_team}.png" %>
-					    </div>
-					  </div>
-				  </div>
-		      <div class="row">
-		      	<div class="col-xs-4 col-md-5">
-			    	</div>
-			    	<div class="col-xs-8 col-md-4">
-		      		<%= button_to "Bet", bet_path(@matches[0].bet_fixture.id), :class => "btn btn-success", :method => "get" %>
-		      	</div>
-		      </div>
-		    </div>
-		    <% for i in 1...@count %>
-			    <div class="item">
-			    	<div class = "row">
-				      <div class="col-xs-4 col-md-2">
-				    	</div>
-				    	<div class="col-xs-8 col-md-4">
-						    <div class="thumbnail">
-						      <%= image_tag "#{@matches[i].bet_fixture.home_team}.png" %>
-						    </div>
-						  </div>
-						  <div class="col-xs-8 col-md-4">
-						    <div class="thumbnail">
-						      <%= image_tag "#{@matches[i].bet_fixture.away_team}.png" %>
-						    </div>
-						  </div>
-						</div>
-			      <div class="row">
-			      	<div class="col-xs-4 col-md-5">
-			    		</div>
-			    		<div class="col-xs-8 col-md-4">
-			    			<%= button_to "Bet", bet_path(@matches[i].bet_fixture.id), :class => "btn btn-success", :method => "get" %>
-			      	</div>
-			      </div>
-			    </div>
-			  <% end %>
-		  </div>
+        <% end %>
+        </div><!--/.carousel-->
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="icon-angle-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="icon-angle-right"></i>
+        </a>
+    </section><!--/#main-slider-->
 
+    
+    </div>
 
-		  <!-- Controls -->
-		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-		    <span class="glyphicon glyphicon-chevron-left"></span>
-		  </a>
-		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-		    <span class="glyphicon glyphicon-chevron-right"></span>
-		  </a>
-		  <% end %>
-		</div>
-	</div>
-</div><br><br>
-
-</div>
