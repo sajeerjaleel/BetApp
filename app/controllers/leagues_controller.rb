@@ -32,7 +32,27 @@ class LeaguesController < ApplicationController
 	def admin_show
 		@league =  League.find(params[:id])
 		@toppers = @league.users.order("coins DESC").page(params[:page]).per(10)
+		@requests = @league.requests.where(new: true).order("created_at DESC")
 	end
+
+	def join_league
+		@league = League.find_by(url: params[:league_url])
+		unless @league.users.include?(current_user) 
+			req = current_user.requests.new(league_id: @league.id, new: true)
+			if @league.request_placed(current_user)
+				if req.save
+					redirect_to home_path, notice: "Request send"
+				else
+					redirect_to league_path(@league.id), notice: "Request not send, try again."
+				end
+			else
+				redirect_to home_path, notice: "Request already placed"
+			end
+		else
+			redirect_to home_path, notice: "Already member"
+		end
+	end
+
 
 	def remove_user
 		league = League.find(params[:league_id])
@@ -42,6 +62,32 @@ class LeaguesController < ApplicationController
 			user_league[0].destroy
 		end
 		redirect_to admin_show_league_path(params[:league_id])
+	end
+
+	def accept_request
+		req = Request.find(params[:id])
+		req_user = req.user 
+		req_league = req.league
+		if req_league.admin_id == current_user.id 
+			unless req_league.users.include?(req_user)
+				UserLeague.create(user_id: req_user.id, league_id: req_league.id)
+				req.update_attributes(new: false)
+			end
+			redirect_to admin_show_league_path(req_league.id), notice: "Request Accepted"
+		else
+			redirect_to home_path, notice: "Not authorised to perform this action"
+		end
+	end
+
+	def delete_request
+		req = Request.find(params[:id])
+		req_league = req.league
+		if req_league.admin_id == current_user.id
+			req.destroy
+			redirect_to admin_show_league_path(req_league.id), notice: "Request Deleted"
+		else
+			redirect_to home_path, notice: "Not authorised to perform this action"
+		end 
 	end
 
 	private 

@@ -1,14 +1,27 @@
+<div class = "row" align= center>
+	<p>Use this link for inviting users <strong>"localhost:3000/join_league/<%= @league.url if @league.url%>"</strong><p>
+	<%#= link_to "kkkk", join_league_path(league_url: @league.url)%>
+</div>
 <% unless @toppers.empty?%>
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-md-2 back-grey">
+	<h3  style= "color:black"> Join requests</h3>
 	</div>
 	<div class = "back-grey col-md-8">
 		<h3 align = center style="color:black;">Users in <%= @league.name %></h3>
 	</div>
 </div>
+
 <div class="row">
-	<div class="col-md-2">
-		<%= join_league(current_user)%>
+	<div class="col-md-2 <%= "back-grey" unless @requests.empty? %>">	
+	<% unless @requests.empty? %>
+		<% @requests.each do |req| %>
+			<%= req.user.full_name %> : <%= link_to "Approve", accept_request_path(req.id),class: "white"%>
+			<%= link_to "Delete", delete_request_path(req.id), class: "red"%>
+		<% end %>
+	<% else %>
+		<p> No Requests</p>	
+	<% end %>
 	</div>
 	<div align = center class = "back-grey col-md-8">
 	<table class="table table-bordered" style="max-width:760px">
