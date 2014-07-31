@@ -1,9 +1,10 @@
+   <div style="min-height:625px;">
     <section id="main-slider" class="no-margin">
       <div class="carousel slide wet-asphalt">
         <ol class="carousel-indicators">
           <li data-target="#main-slider" data-slide-to="0" class="active"></li>
           <% for i in 1...@count %>
-          	<li data-target="#carousel-example-generic" data-slide-to="#{i}"></li>
+          	<li data-target="#main-slider" data-slide-to="#{i}"></li>
           <% end %>
         </ol>
 
@@ -16,8 +17,8 @@
                   <div class="col-sm-6 hidden-xs animation animated-item-4">
                     <div class="centered">
                       <div class="embed-container">
-                        <%= image_tag "#{@matches.first.bet_fixture.home_team}.png", class: "slider-image" %>
-                        <%= image_tag "#{@matches.first.bet_fixture.away_team}.png", class: "slider-image"  %>
+                        <%= link_to (image_tag "#{@matches.first.bet_fixture.home_team}.png", class: "slider-image"), bet_path(@matches.first.bet_fixture.id) %>
+                        <%= link_to (image_tag "#{@matches.first.bet_fixture.away_team}.png", class: "slider-image"), bet_path(@matches.first.bet_fixture.id)  %>
                       </div>
                     </div>
                   </div>
@@ -32,8 +33,8 @@
 	                  <div class="col-sm-6 hidden-xs animation animated-item-4">
 	                    <div class="centered">
 	                      <div class="embed-container">
-	                        <%= image_tag "#{@matches[i].bet_fixture.home_team}.png", class: "slider-image"  %>
-	                        <%= image_tag "#{@matches[i].bet_fixture.away_team}.png", class: "slider-image"  %>
+	                        <%= link_to (image_tag "#{@matches[i].bet_fixture.home_team}.png", class: "slider-image"), bet_path(@matches[i].bet_fixture.id)  %>
+	                        <%= link_to (image_tag "#{@matches[i].bet_fixture.away_team}.png", class: "slider-image"), bet_path(@matches[i].bet_fixture.id)   %>
 	                      </div>
 	                    </div>
                   	</div>
@@ -52,4 +53,7 @@
             <i class="icon-angle-right"></i>
         </a>
     </section><!--/#main-slider-->
+
+    
+    </div>
 

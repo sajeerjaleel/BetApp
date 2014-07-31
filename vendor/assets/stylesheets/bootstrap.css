@@ -6362,6 +6362,8 @@ button.close {
   display: none;
   -webkit-transition: 0.6s ease-in-out left;
           transition: 0.6s ease-in-out left;
+  /*custom*/
+  min-height: 625px;
 }
 
 .carousel-inner > .item > img,
