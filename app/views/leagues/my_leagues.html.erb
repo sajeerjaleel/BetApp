@@ -1,26 +1,8 @@
-<br>
-<div class="row">
-  <div class="col-md-8">
-  </div>
-  <div class="col-md-4">
-    <%= form_tag leagues_path, :method => 'get'  do %>
-      <p>
-        <%= text_field_tag :search, params[:search], placeholder: "League Name" %>
-        <%= submit_tag "search leaues", :name => nil%>
-      </p>
-    <% end %>
-  </div>  
-</div>
 <div class="row">
   <div class="col-md-2">
-    <ul class="nav nav-pills">
-      <li><%= link_to "Create League", new_league_path%></li>
-      <li><%= admin_prevs(current_user) %></li>
-      <li><%= (link_to "My Leagues", my_leagues_path) unless current_user.leagues.count == 0%></li>
-    </ul>
   </div>
   <div class = "back-grey col-md-8">
-  	<h1 style="color: black" align= "center"> All Leagues
+  	<h1 style="color: black" align= "center"> My Leagues
     </h1>
   </div>
 </div>
@@ -48,7 +30,7 @@
     </div>
   <% else %>
     <div class = "col-md-8">
-      <h3 align="center" style="color: black"> No Leagues Found...</h3>  
+      <h3 align="center" style="color: black"> No Leagues...</h3>  
     </div>  
   <% end %>  
 </div> 

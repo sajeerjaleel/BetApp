@@ -9,14 +9,18 @@ class LeaguesController < ApplicationController
 	end
 
 	def create_league
-		league = current_user.leagues.create(league_params)
-		league.admin_id = current_user.id
-		if league.save
-			redirect_to leagues_path
+		unless current_user.leagues.count > 5
+			league = current_user.leagues.create(league_params)
+			league.admin_id = current_user.id
+			if league.save
+				redirect_to leagues_path
+			else
+				flash[:error] = "Some error prevented creating league, try another name"
+				redirect_to new_league_path
+			end
 		else
-			flash[:error] = "Some error prevented creating league, try another name"
-			redirect_to new_league_path
-		end
+			redirect_to new_league_path, notice: "Only 5 leagues per user."
+		end	
 
 	end
 
@@ -88,6 +92,10 @@ class LeaguesController < ApplicationController
 		else
 			redirect_to home_path, notice: "Not authorised to perform this action"
 		end 
+	end
+
+	def my_leagues
+		@leagues = current_user.leagues.page(params[:page]).per(10)
 	end
 
 	private 
