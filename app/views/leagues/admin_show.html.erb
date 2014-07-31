@@ -13,11 +13,12 @@
 </div>
 
 <div class="row">
-	<div class="col-md-2 <%= "back-grey" unless @requests.empty? %>">	
+	<div class="col-md-2 <%= "back-grey" unless @requests.empty? %> " 
+	style='overflow-y:auto;max-height:400px;'>	
 	<% unless @requests.empty? %>
 		<% @requests.each do |req| %>
-			<%= req.user.full_name %> : <%= link_to "Approve", accept_request_path(req.id),class: "white"%>
-			<%= link_to "Delete", delete_request_path(req.id), class: "red"%>
+			<p><%= req.user.full_name %> : <%= link_to "Approve", accept_request_path(req.id),class: "white"%>
+			<%= link_to "Delete", delete_request_path(req.id), class: "red"%></p>
 		<% end %>
 	<% else %>
 		<p> No Requests</p>	
