@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
  before_filter :authenticate_user!, :except => ["index"]
 
+ layout :page_layout
+
 	def index
 	 	@team_coins= []
 	 	@team_users = []
@@ -142,6 +144,12 @@ class HomeController < ApplicationController
 
   def comment_params
   	params.require(:comment).permit(:content)
+  end
+
+  def page_layout
+		unless  params[:action] == "new" or params[:action] == "index"
+			"page_layout"
+		end
   end
 	
 end

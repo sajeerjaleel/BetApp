@@ -1,7 +1,7 @@
 <% comment = @comment %>
 <span class = "span_right" data-commentid= "<%= comment.id%>">
-		<%= image_tag "green_up.png", width: "20", height: "20", class: "liked"%><%= comment.like%> Likes
+		<%= image_tag "up.png", width: "15", height: "18", class: "liked"%>&nbsp<%= comment.like%> Likes
 		</span>
 		<span class= "span_down" data-commentid= "<%= comment.id%>">
-		<%= image_tag "red_down.png", width: "20", height: "20", class: "disliked"%><%= comment.dislike%> Dislikes
+		<%= image_tag "down.png", width: "15", height: "18", class: "disliked"%>&nbsp<%= comment.dislike%> Dislikes
 		</span>
