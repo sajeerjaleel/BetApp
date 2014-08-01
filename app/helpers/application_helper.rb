@@ -22,7 +22,7 @@ module ApplicationHelper
 	end
 
 	def join_league(user)
-		 (link_to "Join Leage", "#") unless @league.users.include?(user)
+		 (link_to "Join Leage", join_league_path(league_url: @league.url)) unless @league.users.include?(user)
 	end
 
 	def away_image(bet_match)

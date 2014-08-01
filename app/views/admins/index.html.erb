@@ -1,3 +1,4 @@
+<div class="container container-custom" style="min-height:490px;">
 <%= link_to "Create Bets", new_bet_match_path%>
 <%= link_to "Edit Bets" , bet_matches_path%>
 <%= link_to "Remove All Bets" , remove_bets_path, id: "remove_bets"%>
@@ -11,3 +12,4 @@
 { height: "400px",library: { title: {
             text: 'Bets ('+ Bet.count.to_s+')'
                     },yAxis: {title: {text: 'No of Bets' }}, xAxis: {title: {text: 'Days' }}}} %>
+</div>

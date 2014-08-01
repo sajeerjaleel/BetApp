@@ -1,4 +1,4 @@
-
+<div class="container container-custom" style="min-height:490px;">
 <h1> Create Bet...</h1>
 <%= form_for(@bet_match, url: bet_matches_path(@bet_match.id), method: :post) do |f| %>
 	<p><div>
@@ -8,3 +8,4 @@
 	<%= f.submit "Create" %>
 
 <% end %>
+</div>

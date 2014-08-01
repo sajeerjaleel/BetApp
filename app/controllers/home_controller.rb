@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
- before_filter :authenticate_user!, :except => ["index"]
+ before_filter :authenticate_user!, :except => ["index", "fixtures", "table", "results"]
 
  layout :page_layout
 

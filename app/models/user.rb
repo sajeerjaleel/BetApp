@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :user_leagues
   has_many :leagues, through: :user_leagues
+  has_many :requests, dependent: :destroy
+
 
   def full_name
   	if nick_name != "" && nick_name != nil
