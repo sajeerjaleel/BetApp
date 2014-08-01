@@ -1,4 +1,4 @@
-/*!
+ca/*!
  * Bootstrap v3.0.3 (http://getbootstrap.com)
  * Copyright 2013 Twitter, Inc.
  * Licensed under http://www.apache.org/licenses/LICENSE-2.0
@@ -6363,7 +6363,7 @@ button.close {
   -webkit-transition: 0.6s ease-in-out left;
           transition: 0.6s ease-in-out left;
   /*custom*/
-  min-height: 625px;
+  min-height: 710px;
 }
 
 .carousel-inner > .item > img,

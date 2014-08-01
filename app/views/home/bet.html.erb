@@ -23,38 +23,35 @@
 
 	<%= form_for(@bet, :url => createbet_path(@fixture.id), method: :post, validate: true) do |f| %>
 		<div class="row">
-			<div class="col-xs-6 col-md-5">
+			<div class="col-xs-6 col-md-4">
 			</div>
-			<div class="col-xs-6 col-md-5">
+			<div class="col-xs-9 col-md-8">
 				<fieldset class="radios">
-			    <label class="label_radio r_on" style="color:black;">
-			      <%= f.radio_button :prediction, 'home', :checked => true %>
-			      <%= @fixture.home_team %></label>
-			    <label class="label_radio" style="color:black;">
-			      <%= f.radio_button :prediction, 'draw', :checked => true %>
-			      Draw</label>
-			    <label class="label_radio" style="color:black;">
-			      <%= f.radio_button :prediction, 'away', :checked => true %>
-			      <%= @fixture.away_team %></label>
-			  </fieldset>
+			   	<label class="label_radio r_on" style="color:black;">
+			     	<%= f.radio_button :prediction, 'home', :checked => true %>
+			     	<%= @fixture.home_team %></label>
+			   	<label class="label_radio" style="color:black;">
+			     	<%= f.radio_button :prediction, 'draw', :checked => true %>
+			     	Draw</label>
+			   	<label class="label_radio" style="color:black;">
+			     	<%= f.radio_button :prediction, 'away', :checked => true %>
+			     	<%= @fixture.away_team %></label>
+			 </fieldset>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-6 col-md-5">
+			<div class="col-xs-6 col-md-4">
 			</div>
-			<div class="col-xs-6 col-md-5">
+			<div class="col-xs-6 col-md-3">
 				<span><%= image_tag "coins.png" , :width => "30px", :height => "30px" %>Coins : </span> <%= f.text_field :coins, :id => "coin_field", :class => "numeric" %>
 				<!-- <p id ="error" style="color:red;"></p> -->
 				<div class = "hidden red" id = "ret_div">Expected Return : <span id = "return"></span> </div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6 col-md-5">
-			</div>
-			<div class="col-xs-6 col-md-5">
+			<div class="col-xs-6 col-md-3">
 				<%= f.submit "Submit", value: "Submit", class: "btn btn-success", :id => "submit", :disable_with => 'Submit' %>
 			</div>
 		</div>
+
 	<% end %>
 
 <% else %>
@@ -91,26 +88,26 @@
 			<thead>
 				<tr>
 					<td>
-					<td style="color:red;"><%= @fixture.home_team %></td>
-					<td style="color:black;">Draw</td>
-					<td style="color:green;"><%= @fixture.away_team %></td>
+					<td><h4 style="color:#0B2161"><%= @fixture.home_team %></h4></td>
+					<td><h4 style="color:#0B2161">Draw</h4></td>
+					<td><h4 style="color:#0B2161"><%= @fixture.away_team %></h4></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>Total Users</td>
-				  <td style="color:blue;"><%= total_users_bet("home_bets") rescue nil %></td>
-				  <td style="color:blue;"><%= total_users_bet("draw_bets") rescue nil %></td>
-				  <td style="color:blue;"><%= total_users_bet("away_bets") rescue nil %></td>
+					<td><h5>Total Users</h5></td>
+				  <td><h5 style="color:black;"><%= total_users_bet("home_bets") rescue nil %></h5></td>
+				  <td><h5 style="color:black;"><%= total_users_bet("draw_bets") rescue nil %></h5></td>
+				  <td><h5 style="color:black;"><%= total_users_bet("away_bets") rescue nil %></h5></td>
 				</tr>
 				<tr>
-					<td>Total Coins</td>
+					<td><h5>Total Coins</h5></td>
 				  <td class="coin_text"><%= total_coins_bet("home_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				  <td class="coin_text"><%= total_coins_bet("draw_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				  <td class="coin_text"><%= total_coins_bet("away_bets") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				</tr>
 				<tr>
-					<td style="font-size:15px;color:black;">Highest Bet</td>
+					<td><h5>Highest Bet</h5></td>
 				  <td class="coin_text"><%= @home_max || "0" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				  <td class="coin_text"><%= @draw_max || "0" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				  <td class="coin_text"><%= @away_max || "0" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
@@ -300,3 +297,35 @@ $('.delete_comment').click(function(e){
   })
 
 </script>
+
+<style>
+input[type=radio].css-checkbox {
+							display:none;
+						}
+
+						input[type=radio].css-checkbox + label.css-label {
+							padding-left:30px;
+							height:24px; 
+							display:inline-block;
+							line-height:24px;
+							background-repeat:no-repeat;
+							background-position: 0 0;
+							font-size:24px;
+							vertical-align:middle;
+							cursor:pointer;
+
+						}
+
+						input[type=radio].css-checkbox:checked + label.css-label {
+							background-position: 0 -24px;
+						}
+						label.css-label {
+				background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_001eb7f7380b3ff18c23afc531e237c0.png);
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			</style>
