@@ -18,6 +18,7 @@
         <td>Name</td> 
         <td>Users</td>
         <td>Coins</td>
+        <td></td>
       </tr>
       <% @leagues.each do |league|%>
       <tr>
@@ -25,6 +26,7 @@
         <td><%= link_to league.name,  admin_show_league_path(league.id) %></td> 
         <td><%= league.users.count %></td>
         <td><%= league.users.sum(:coins) %></td>
+        <td><%= link_to "delete", delete_league_path(league.id), class: "red remove" %></td>
       </tr>
       <% end%>
     </table>
@@ -42,3 +44,10 @@
 	</div>
 <% end %>		
 </div>
+<script type="text/javascript">
+$(function(){
+$( ".remove" ).each(function() {
+  $(this).attr('data-confirm', "Are you sure?");
+}); 
+})
+</script>

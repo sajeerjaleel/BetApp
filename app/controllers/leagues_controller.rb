@@ -57,6 +57,15 @@ class LeaguesController < ApplicationController
 		end
 	end
 
+	def delete_league
+		leag = League.find(params[:id])
+		if current_user.id == leag.admin_id
+			leag.destroy
+		end
+		redirect_to admin_portal_path
+
+	end
+
 
 	def remove_user
 		league = League.find(params[:league_id])
