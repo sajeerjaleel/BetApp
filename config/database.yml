@@ -58,6 +58,4 @@ production:
   encoding: unicode
   database: BetApp
   pool: 5
-  host: localhost
-  username: postgres
-  password: qburst
+
