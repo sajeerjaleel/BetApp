@@ -336,7 +336,7 @@ body > section {
 }
 #main-slider .carousel .boxed {
   padding: 10px 15px;
-  background-color: rgba(0, 0, 0, 0.8);
+  /*background-color: rgba(0, 0, 0, 0.8);*/
   display: inline-block;
 }
 #main-slider .carousel .item {
@@ -402,18 +402,42 @@ body > section {
   animation: fadeInUp 300ms linear 300ms both;
 }
 #main-slider .active .animation.animated-item-2 {
-  -webkit-animation: fadeInUp 300ms linear 600ms both;
+/*  -webkit-animation: fadeInUp 300ms linear 600ms both;
   -moz-animation: fadeInUp 300ms linear 600ms both;
   -o-animation: fadeInUp 300ms linear 600ms both;
   -ms-animation: fadeInUp 300ms linear 600ms both;
-  animation: fadeInUp 300ms linear 600ms both;
+  animation: fadeInUp 300ms linear 600ms both;*/
+
+  /*custom*/
+
+  -webkit-animation: fadeInUp 600ms linear 1800ms both;
+  -moz-animation: fadeInUp 600ms linear 1800ms both;
+  -o-animation: fadeInUp 600ms linear 1800ms both;
+  -ms-animation: fadeInUp 600ms linear 1800ms both;
+  animation: fadeInUp 600ms linear 1800ms both;
+  margin-top: 290px;
+  color:black;
+  font-weight: 700;
+  margin-left: -120px;
 }
 #main-slider .active .animation.animated-item-3 {
-  -webkit-animation: fadeInUp 300ms linear 900ms both;
+/*  -webkit-animation: fadeInUp 300ms linear 900ms both;
   -moz-animation: fadeInUp 300ms linear 900ms both;
   -o-animation: fadeInUp 300ms linear 900ms both;
   -ms-animation: fadeInUp 300ms linear 900ms both;
-  animation: fadeInUp 300ms linear 900ms both;
+  animation: fadeInUp 300ms linear 900ms both;*/
+
+  /*custom*/
+
+  -webkit-animation: fadeInUp 600ms linear 2100ms both;
+  -moz-animation: fadeInUp 600ms linear 2100ms both;
+  -o-animation: fadeInUp 600ms linear 2100ms both;
+  -ms-animation: fadeInUp 600ms linear 2100ms both;
+  animation: fadeInUp 600ms linear 2100ms both;
+  margin-top: -10px;
+  color:black;
+  font-weight: 700;
+  margin-left: -50px;
 }
 #main-slider .active .animation.animated-item-4 {
   -webkit-animation: fadeInUp 300ms linear 1200ms both;

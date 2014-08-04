@@ -147,9 +147,18 @@ class HomeController < ApplicationController
   end
 
   def page_layout
-		unless  params[:action] == "new" or params[:action] == "index"
+		if current_user and params[:action] != "new" and params[:action] != "index"
 			"page_layout"
+
+		elsif params[:action] == "new"
+			"application"
+
+		else
+			"landing_layout"
 		end
+		# unless current_user
+		# 	"landing_layout"
+		# end
   end
 	
 end

@@ -9,7 +9,7 @@
 	  <%= csrf_meta_tags %>
 	</head>
 
-	<% unless params[:controller] == "home" and  params[:action] == "index" %> 
+	<% if current_user %> 
 		<body>
 
 			    <header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
