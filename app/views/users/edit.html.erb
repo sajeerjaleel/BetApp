@@ -25,11 +25,6 @@
 	Favourite Team :
 	<%= f.select(:team_id, Team.all.collect {|a| [a.team_name, a.id]}, {:include_blank => "Select"}) %>
 	</div></p>
-	
-	<p><div>
-		DP :
-		<%= f.file_field :image %>
-	</div></p>
 	<%= f.submit "Update" %>
 
 <% end %>

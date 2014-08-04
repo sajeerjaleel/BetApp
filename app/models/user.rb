@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def updated?
-    first_name != "" && last_name != "" && nick_name != nil && image != nil 
+    first_name != "" && last_name != "" && nick_name != nil
   end
 
   def fav_team
