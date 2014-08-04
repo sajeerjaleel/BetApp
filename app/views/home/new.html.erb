@@ -22,6 +22,12 @@
                       </div>
                     </div>
                   </div>
+                  <div class="carousel-content centered">
+                    <p class="boxed animation animated-item-2">
+                    <%= @matches.first.bet_fixture.date %></p>
+                  </div>
+                  <p class="boxed animation animated-item-3">
+                  <%= @matches.first.bet_fixture.time %></p>
                 </div>
               </div>
             </div><!--/.item-->
@@ -38,6 +44,12 @@
 	                      </div>
 	                    </div>
                   	</div>
+                    <div class="carousel-content centered">
+                      <p class="boxed animation animated-item-2">
+                      <%= @matches[i].bet_fixture.date %></p>
+                    </div>
+                    <p class="boxed animation animated-item-3">
+                    <%= @matches[i].bet_fixture.time %></p>
 	                </div>
 	              </div>
 	            </div><!--/.item-->
