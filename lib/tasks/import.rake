@@ -2,9 +2,9 @@ require 'open-uri'
 
 task :import => :environment do
 
-  Table.delete_all
-  Fixture.delete_all
-  Result.delete_all
+  # Table.delete_all
+  # Fixture.delete_all
+  # Result.delete_all
 
 	#Table
 	page= Nokogiri::HTML(open("http://www.bbc.com/sport/football/tables")) 
