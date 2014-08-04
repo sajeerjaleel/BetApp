@@ -48,14 +48,11 @@ test:
   adapter: postgresql
   encoding: unicode
   database: BetApp
-  pool: 5
-  host: localhost
-  username: postgres
-  password: qburst
+
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: BetApp
-  pool: 5
+  database: BetApp_production
+
 
