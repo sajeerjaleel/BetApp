@@ -53,6 +53,6 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: BetApp_production
+  database: BetApp
 
 
