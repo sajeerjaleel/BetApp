@@ -1,7 +1,11 @@
 <div class="container container-custom" style="min-height:650px;">
 <div class = "row" align= center>
 	<p>Use this link for inviting users <strong>"localhost:3000/join_league/<%= @league.url if @league.url%>"</strong><p>
-	<%#= link_to "kkkk", join_league_path(league_url: @league.url)%>
+	<% if @league.url %>
+		<a href="http://www.facebook.com/sharer.php?u=localhost:3000/join_league/<%= @league.url %>">kolo</a>
+		<a href = "http://twitter.com/share?url=http://localhost:3000/join_league/<%= @league.url %>&text=Join my League..">polo</a>
+			<a href = "https://plusone.google.com/_/+1/confirm?hl=en&url=http://localhost:3000/join_league/<%= @league.url %>">solo</a>
+<% end %>
 </div>
 
 
