@@ -12,7 +12,7 @@
                   	<li><%= join_league(current_user) %></li>
                   <% end %>
                   <% if @league.admin_id == current_user.id %>
-                  	<li><%= link_to "Delete", delete_league_path(@league.id), class: "red remove", style: "color:red;" %></li>
+                  	<li><%= link_to "Delete", delete_league_path(@league.id), class: "red remove", style: "color:red;font-weight:700;" %></li>
                   <% end %>
               </ul>
           </div>
