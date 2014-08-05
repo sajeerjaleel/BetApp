@@ -2,14 +2,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>My Leagues</h1>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                    <h1 style="color:#2C3446;">My Leagues</h1>
                 </div>
                 <div class="col-sm-6">
                     <ul class="breadcrumb pull-right">
-                        <li><%= link_to "Leagues", leagues_path %></li>
-                        <li><%#= admin_prevs(current_user) %></li>
-                        <li><%#= (link_to "My Leagues", my_leagues_path) unless current_user.leagues.count == 0%></li>
+                        <li><%= link_to "Leagues", leagues_path, style: "color:#428bca;"  %></li>
                     </ul>
                 </div>
             </div>
