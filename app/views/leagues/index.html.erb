@@ -1,29 +1,38 @@
+<section id="title" class="emerald" style="margin-top:90px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>Leagues</h1>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="breadcrumb pull-right">
+                        <li><%= link_to "Create League", new_league_path%></li>
+                        <li><%= (link_to "My Leagues", my_leagues_path) %></li>
+                        <%= form_tag leagues_path, :method => 'get'  do %>
+                          <li><%= text_field_tag :search, params[:search], placeholder: "League Name" %>
+                          <%= submit_tag "search leagues", :name => nil%></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <% if notice %>
+        <p class="alert alert-success alert-dismissible" role="alert" >
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= notice %>
+        </p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger alert-dismissible" role="alert" ><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= alert %></p>
+      <% end %>
+
+
 <div class="container container-custom" style="min-height:650px;">
-<div class="row">
-  <div class="col-md-8">
-  </div>
-  <div class="col-md-4">
-    <%= form_tag leagues_path, :method => 'get'  do %>
-      <p>
-        <%= text_field_tag :search, params[:search], placeholder: "League Name" %>
-        <%= submit_tag "search leaues", :name => nil%>
-      </p>
-    <% end %>
-  </div>  
-</div>
-<div class="row">
-  <div class="col-md-2">
-    <ul class="nav nav-pills">
-      <li><%= link_to "Create League", new_league_path%></li>
-      <li><%= admin_prevs(current_user) %></li>
-      <li><%= (link_to "My Leagues", my_leagues_path) unless current_user.leagues.count == 0%></li>
-    </ul>
-  </div>
-  <div class = "back-grey col-md-8">
-  	<h1 style="color: black" align= "center"> All Leagues
-    </h1>
-  </div>
-</div>
+
+
 <div class="row">
   <div class = "col-md-2">
   </div>
@@ -41,7 +50,7 @@
         <td><%= (@leagues.index(league))+1%></td>
         <td><%= link_to league.name, league_path(league.id) %></td> 
         <td><%= league.users.count %></td>
-        <td><%= league.users.sum(:coins) %></td>
+        <td class="coin_text box"><%= league.users.sum(:coins) %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
       </tr>
       <% end%>
     </table>

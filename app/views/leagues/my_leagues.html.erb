@@ -1,12 +1,23 @@
+<section id="title" class="emerald" style="margin-top:90px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>My Leagues</h1>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="breadcrumb pull-right">
+                        <li><%= link_to "Leagues", leagues_path %></li>
+                        <li><%#= admin_prevs(current_user) %></li>
+                        <li><%#= (link_to "My Leagues", my_leagues_path) unless current_user.leagues.count == 0%></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 <div class="container container-custom" style="min-height:650px;">
-<div class="row">
-  <div class="col-md-2">
-  </div>
-  <div class = "back-grey col-md-8">
-  	<h1 style="color: black" align= "center"> My Leagues
-    </h1>
-  </div>
-</div>
 <div class="row">
   <div class = "col-md-2">
   </div>
@@ -25,7 +36,7 @@
         <td><%= (@leagues.index(league))+1%></td>
         <td><%= link_to league.name, league_path(league.id) %></td> 
         <td><%= league.users.count %></td>
-        <td><%= league.users.sum(:coins) %></td>
+        <td class="coin_text box"><%= league.users.sum(:coins) %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
         <td><%= league.my_pos(current_user) %></td>
       </tr>
       <% end%>

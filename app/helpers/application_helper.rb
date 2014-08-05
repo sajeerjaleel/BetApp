@@ -131,8 +131,8 @@ module ApplicationHelper
 
   def remove_user(user)
   	unless @league.admin_id == user.id 
-  		link_to "Remove User", remove_user_path(league_id: @league.id,user_id: user.id) ,method: "delete", 
-		  class: "remove"
+  		link_to "", remove_user_path(league_id: @league.id,user_id: user.id) ,method: "delete", 
+		  class: "glyphicon glyphicon-trash", :style => "color:red;"
 		else
 			"N/A"
 		end

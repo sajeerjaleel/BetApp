@@ -13,7 +13,7 @@ class LeaguesController < ApplicationController
 			league = current_user.leagues.create(league_params)
 			league.admin_id = current_user.id
 			if league.save
-				redirect_to leagues_path
+				redirect_to leagues_path, notice: "New League created successfully!"
 			else
 				flash[:error] = "Some error prevented creating league, try another name"
 				redirect_to new_league_path
@@ -27,6 +27,7 @@ class LeaguesController < ApplicationController
 	def show
 		@league =  League.find(params[:id])
 		@toppers = @league.users.order("coins DESC").first(10)
+		@requests = @league.requests.where(new: true).order("created_at DESC")
 	end
 
 	def admin_portal
@@ -45,15 +46,15 @@ class LeaguesController < ApplicationController
 			req = current_user.requests.new(league_id: @league.id, new: true)
 			if @league.request_placed(current_user)
 				if req.save
-					redirect_to home_path, notice: "Request send"
+					redirect_to leagues_path, notice: "Request send"
 				else
-					redirect_to league_path(@league.id), notice: "Request not send, try again."
+					redirect_to league_path(@league.id), alert: "Request not send, try again."
 				end
 			else
-				redirect_to home_path, notice: "Request already placed"
+				redirect_to leagues_path, alert: "Request already placed"
 			end
 		else
-			redirect_to home_path, notice: "Already member"
+			redirect_to leagues_path, alert: "Already member"
 		end
 	end
 
@@ -62,7 +63,7 @@ class LeaguesController < ApplicationController
 		if current_user.id == leag.admin_id
 			leag.destroy
 		end
-		redirect_to admin_portal_path
+		redirect_to leagues_path, alert: "League deleted !"
 
 	end
 
@@ -74,7 +75,7 @@ class LeaguesController < ApplicationController
 		unless params[:user_id] == league.admin_id
 			user_league[0].destroy
 		end
-		redirect_to admin_show_league_path(params[:league_id])
+		redirect_to league_path(params[:league_id]), alert: "User Removed !!"
 	end
 
 	def accept_request
@@ -86,9 +87,9 @@ class LeaguesController < ApplicationController
 				UserLeague.create(user_id: req_user.id, league_id: req_league.id)
 				req.update_attributes(new: false)
 			end
-			redirect_to admin_show_league_path(req_league.id), notice: "Request Accepted"
+			redirect_to league_path(req_league.id), notice: "Request Accepted"
 		else
-			redirect_to home_path, notice: "Not authorised to perform this action"
+			redirect_to leagues_path, notice: "Not authorised to perform this action"
 		end
 	end
 
@@ -99,7 +100,7 @@ class LeaguesController < ApplicationController
 			req.destroy
 			redirect_to admin_show_league_path(req_league.id), notice: "Request Deleted"
 		else
-			redirect_to home_path, notice: "Not authorised to perform this action"
+			redirect_to leagues_path, notice: "Not authorised to perform this action"
 		end 
 	end
 

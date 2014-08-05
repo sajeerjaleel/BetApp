@@ -1,7 +1,20 @@
-<div align = center class= "back-grey">
-	<h3 align = "center" style = "color:black;font-weight:700;" >Bet History</h3><br>
-</div>
-<div class= "back-grey">
+<section id="title" class="emerald custom-emerald" style="margin-top:90px;" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Bet History</h1>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br>
+
+<div class="container" style="min-height:650px;">
 
 
 	<% unless current_user.bets.empty? %>
@@ -13,10 +26,10 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<td style="font-size:20px;">Sl No.</td>
-							<td style="font-size:20px;">Match</td>
-							<td style="font-size:20px;">Placed Coins</td>
-							<td style="font-size:20px;">Coins won</td>
+							<td>Sl No.</td>
+							<td>Match</td>
+							<td>Placed Coins</td>
+							<td>Coins won</td>
 						</tr>
 					</thead>
 
@@ -27,8 +40,8 @@
 								<td><%= sl = sl+1 %></td>
 							  <td><%= bet.bet_fixture.home_team %> vs 
 							  		<%= bet.bet_fixture.away_team %></td>
-							  <td class="coin_text"><%= bet.coins %><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></td>
-							  <td class="coin_text"><%= bet.coins_won || 0 %><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></td>
+							  <td class="coin_text box"><%= bet.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
+							  <td class="coin_text box"><%= bet.coins_won || 0 %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
 							</tr>
 						<% end %>
 					</tbody>
@@ -42,3 +55,4 @@
 
 	<% end %>
 	</div>
+

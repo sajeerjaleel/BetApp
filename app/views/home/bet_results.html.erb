@@ -1,7 +1,21 @@
+<section id="title" class="emerald custom-emerald" style="margin-top:90px;" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Bet Results</h1>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container" style="min-height:650px;">
+<div class="container container-custom">
 <% unless @users.empty?%>
-<div class = "back-grey">
-<h2 align = center>Results</h2>
-</div>
 <div align = center class = "back-grey">
 <h6 style = "color:black;">Your Position : <%= (@users.index(current_user))+1%></h6>
 <table class="table table-bordered" style="width:800px">
@@ -16,7 +30,7 @@
 	  <td><%= (@users.index(user))+1%></td>
 	  <td><%= user.full_name %></td> 
 	  <td><%= user.fav_team %></td>
-	  <td><%= user.coins %></td>
+	  <td class="coin_text box"><%= user.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
 	</tr>
 	<% end%>
 </table>
@@ -28,3 +42,5 @@
     <div><%= paginate @users, :outer_window => 1 %></div>
 </div>
 <% end %>
+</div>
+</div>
