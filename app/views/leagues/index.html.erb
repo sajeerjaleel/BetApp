@@ -2,13 +2,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>Leagues</h1>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                    <h1 style="color:#2C3446;">Leagues</h1>
                 </div>
                 <div class="col-sm-6">
                     <ul class="breadcrumb pull-right">
-                        <li><%= link_to "Create League", new_league_path%></li>
-                        <li><%= (link_to "My Leagues", my_leagues_path) %></li>
+                        <li><%= link_to "Create League", new_league_path, style: "color:#428bca;" %></li>
+                        <li><%= link_to "My Leagues", my_leagues_path, style: "color:#428bca;"  %></li>
                         <%= form_tag leagues_path, :method => 'get'  do %>
                           <li><%= text_field_tag :search, params[:search], placeholder: "League Name" %>
                           <%= submit_tag "search leagues", :name => nil%></li>

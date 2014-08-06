@@ -1,25 +1,63 @@
 <section id="title" class="emerald" style="margin-top:90px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1><%= @league.name %></h1>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                    <p>Use this link for inviting users <strong>"localhost:3000/join_league/<%= @league.url if @league.url%>"</strong><p>
-                </div>
-                <div class="col-sm-6">
-                    <ul class="breadcrumb pull-right">
-                        <li><%= link_to "Leagues", leagues_path %></li>
-                        <li><%= (link_to "My Leagues", my_leagues_path) %></li>
-                        <% unless @league.admin_id == current_user.id %>
-                        	<li><%= join_league(current_user)%></li>
-                        <% end %>
-	                      <% if @league.admin_id == current_user.id %>
-                        	<li><%= link_to "delete", delete_league_path(@league.id), class: "red remove" %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-6">
+              <h1 style="color:#2C3446;"><%= @league.name %></h1><br>
+          </div>
+          <div class="col-sm-6">
+              <ul class="breadcrumb pull-right">
+                  <li><%= link_to "Leagues", leagues_path, style: "color:#428bca;" %></li>
+                  <li><%= link_to "My Leagues", my_leagues_path, style: "color:#428bca;" %></li>
+                  <% unless @league.admin_id == current_user.id %>
+                  	<li><%= join_league(current_user) %></li>
+                  <% end %>
+                  <% if @league.admin_id == current_user.id %>
+                  	<li><%= link_to "Delete", delete_league_path(@league.id), class: "red remove", style: "color:red;font-weight:700;" %></li>
+                  <% end %>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <section id="services" >
+	      <div class="row">
+	          <div class="col-md-4 col-sm-6">
+	              <div class="media">
+	                  <div class="pull-left">
+	                      <i class="icon-twitter icon-md"></i>
+	                  </div>
+	                  <div class="media-body">
+	                      <h3 class="media-heading">Twitter Marketing</h3>
+	                      <p><a href = "http://twitter.com/share?url=http://localhost:3000/join_league/<%= @league.url %>&text=Join my League..">Share</a></p>
+	                  </div>
+	              </div>
+	          </div><!--/.col-md-4-->
+	          <div class="col-md-4 col-sm-6">
+	              <div class="media">
+	                  <div class="pull-left">
+	                      <i class="icon-facebook icon-md"></i>
+	                  </div>
+	                  <div class="media-body">
+	                      <h3 class="media-heading">Facebook Marketing</h3>
+	                      <p><a href="http://www.facebook.com/sharer.php?u=localhost:3000/join_league/<%= @league.url %>">Share</a></p>
+	                  </div>
+	              </div>
+	          </div><!--/.col-md-4-->
+	          <div class="col-md-4 col-sm-6">
+	              <div class="media">
+	                  <div class="pull-left">
+	                      <i class="icon-google-plus icon-md"></i>
+	                  </div>
+	                  <div class="media-body">
+	                      <h3 class="media-heading">Google Plus Marketing</h3>
+	                      <p><a href = "https://plusone.google.com/_/+1/confirm?hl=en&url=http://localhost:3000/join_league/<%= @league.url %>">Share</a></p>
+	                  </div>
+	              </div>
+	          </div><!--/.col-md-4-->
+	      </div>
+	      <em><p align="center">Use this link for inviting users <strong>"localhost:3000/join_league/<%= @league.url if @league.url%>"</strong></p></em>
+	</section><!--/#services-->
+
     </section>
 
 		  <% if notice %>
