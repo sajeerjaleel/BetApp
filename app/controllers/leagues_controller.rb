@@ -72,8 +72,10 @@ class LeaguesController < ApplicationController
 		league = League.find(params[:league_id])
 		
 		user_league = UserLeague.where("user_id = ? AND league_id = ?", params[:user_id],params[:league_id])
+		requests = Request.where("user_id = ? AND league_id = ?", params[:user_id],params[:league_id])
 		unless params[:user_id] == league.admin_id
 			user_league[0].destroy
+			requests[0].destroy
 		end
 		redirect_to league_path(params[:league_id]), alert: "User Removed !!"
 	end
