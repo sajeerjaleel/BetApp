@@ -27,7 +27,7 @@
 	                      <i class="icon-twitter icon-md"></i>
 	                  </div>
 	                  <div class="media-body">
-	                      <h3 class="media-heading">Twitter Marketing</h3>
+	                      <h3 class="media-heading">Share via Twitter</h3>
 	                      <p><a href = "http://twitter.com/share?url=http://localhost:3000/join_league/<%= @league.url %>&text=Join my League..">Share</a></p>
 	                  </div>
 	              </div>
@@ -38,7 +38,7 @@
 	                      <i class="icon-facebook icon-md"></i>
 	                  </div>
 	                  <div class="media-body">
-	                      <h3 class="media-heading">Facebook Marketing</h3>
+	                      <h3 class="media-heading">Share via Facebook</h3>
 	                      <p><a href="http://www.facebook.com/sharer.php?u=localhost:3000/join_league/<%= @league.url %>">Share</a></p>
 	                  </div>
 	              </div>
@@ -49,7 +49,7 @@
 	                      <i class="icon-google-plus icon-md"></i>
 	                  </div>
 	                  <div class="media-body">
-	                      <h3 class="media-heading">Google Plus Marketing</h3>
+	                      <h3 class="media-heading">Share via Google Plus</h3>
 	                      <p><a href = "https://plusone.google.com/_/+1/confirm?hl=en&url=http://localhost:3000/join_league/<%= @league.url %>">Share</a></p>
 	                  </div>
 	              </div>
@@ -75,6 +75,11 @@
 <% unless @toppers.empty?%>
 <div class="row">
 	<div class="col-md-2">
+	<% if @league.admin_id == current_user.id %>
+		<ul class="nav nav-pills nav-stacked">
+			<li><a href="#" id ="join_requests">Join Requests</a></li>
+		</ul>
+	<% end %>
 	</div>
 	<div align = center class = "back-grey col-md-8">
 	<table class="table table-bordered" style="max-width:760px">
@@ -102,88 +107,56 @@
 	</div>
 </div>
 <% end %>
-
-<% if @league.admin_id == current_user.id %>
-
-	<legend><h3  style= "color:black"> Join requests</h3></legend>
-
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-
-		<% @count = 0 %>
-		<% unless @requests.empty? %>	
-			<% @requests.each do |req| %>
-			<table class="table table-bordered" style="max-width:760px">
-				<tr>
-				  <td>Sl no.</td>
-				  <td>User</td> 
-				  <td>Approve</td>
-				  <td>Delete</td>
-				</tr>
-				<tr>
-				  <td><%= @count += 1  %></td>
-				  <td><%= req.user.full_name %></td> 
-				  <td><%= link_to "", accept_request_path(req.id),class: "glyphicon glyphicon-ok", :style => "color:green;"%></td>
-				  <td><%= link_to "", delete_request_path(req.id), class: "glyphicon glyphicon-trash", :style => "color:red;"%></td>
-				</tr>
-			</table>
-			<% end %>
-		<% else %>
-			<p> No Requests</p>
-		<% end %>
 	</div>
 
-<% end %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Join Requests</h4>
+      </div>
+      <div class="modal-body">
+       <% if @league.admin_id == current_user.id %>
+				<% unless @requests.empty? %>	
+					<% @requests.each do |req| %>
+					<table class="table table-bordered" style="max-width:760px">
+						<tr>
+						  <td style="color:black;">Sl no.</td>
+						  <td style="color:black;">User</td> 
+						  <td style="color:black;">Approve</td>
+						  <td style="color:black;">Delete</td>
+						</tr>
+						<tr>
+						  <td style="color:black;"><%= @requests.index(req)+1 %></td>
+						  <td style="color:black;"><%= req.user.full_name %></td> 
+						  <td><%= link_to "", accept_request_path(req.id),class: "glyphicon glyphicon-ok", :style => "color:green;"%></td>
+						  <td><%= link_to "", delete_request_path(req.id), class: "glyphicon glyphicon-trash", :style => "color:red;"%></td>
+						</tr>
+					</table>
+					<% end %>
+				<% else %>
+					<p> No Requests</p>
+				<% end %>
+				<% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</div>
-
-
-	<section id="services" class="custom-section">
-	  <div class="container">
-	      <div class="row">
-	          <div class="col-md-4 col-sm-6">
-	              <div class="media">
-	                  <div class="pull-left">
-	                      <i class="icon-twitter icon-md"></i>
-	                  </div>
-	                  <div class="media-body">
-	                      <h3 class="media-heading">Twitter Marketing</h3>
-	                      <p><a href = "http://twitter.com/share?url=http://localhost:3000/join_league/<%= @league.url %>&text=Join my League..">Share</a></p>
-	                  </div>
-	              </div>
-	          </div><!--/.col-md-4-->
-	          <div class="col-md-4 col-sm-6">
-	              <div class="media">
-	                  <div class="pull-left">
-	                      <i class="icon-facebook icon-md"></i>
-	                  </div>
-	                  <div class="media-body">
-	                      <h3 class="media-heading">Facebook Marketing</h3>
-	                      <p><a href="http://www.facebook.com/sharer.php?u=localhost:3000/join_league/<%= @league.url %>">Share</a></p>
-	                  </div>
-	              </div>
-	          </div><!--/.col-md-4-->
-	          <div class="col-md-4 col-sm-6">
-	              <div class="media">
-	                  <div class="pull-left">
-	                      <i class="icon-google-plus icon-md"></i>
-	                  </div>
-	                  <div class="media-body">
-	                      <h3 class="media-heading">Google Plus Marketing</h3>
-	                      <p><a href = "https://plusone.google.com/_/+1/confirm?hl=en&url=http://localhost:3000/join_league/<%= @league.url %>">Share</a></p>
-	                  </div>
-	              </div>
-	          </div><!--/.col-md-4-->
-	      </div>
-	  </div>
-	</section><!--/#services-->
-
-
 
 	<script type="text/javascript">
 $(function(){
 $( ".remove" ).each(function() {
   $(this).attr('data-confirm', "Are you sure?");
-}); 
+});
+
+$('#join_requests').click(function(e){
+	e.preventDefault();
+	$('#myModal').modal();
+})
 })
 </script>
