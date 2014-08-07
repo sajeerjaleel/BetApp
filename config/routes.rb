@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get '/request/delete/:id' => "leagues#delete_request", as: :delete_request
   get '/my_leagues' => "leagues#my_leagues", as: :my_leagues
   get '/league/delete/:id' => "leagues#delete_league", as: :delete_league
+  get '/rules' => "home#rules", as: :rules
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
