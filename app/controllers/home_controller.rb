@@ -77,11 +77,12 @@ class HomeController < ApplicationController
 		@bet = Bet.new(bet_params)
 		@bet.user_id = current_user.id
 		@bet.bet_fixture_id = @fixture.id
+		@bet.prediction = params[:prediction]
 		@user.coins = @user.coins - @bet.coins
 		return redirect_to bet_path, :alert => "No enough coins" if (@user.coins < 0)
 		@user.save
 		if @bet.save
-			redirect_to home_path, :notice => "Successfully placed Bet"
+			redirect_to bet_path, :notice => "Successfully placed Bet"
 		else
       render @bet.errors.full_messages
     end
