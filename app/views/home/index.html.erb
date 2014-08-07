@@ -5,24 +5,21 @@
 
 <div class="row">
 	<div class="col-md-1"></div>
-	<div id= "container" class="pie col-md-5">
+	<!-- <div id= "container" class="pie col-md-5">
 	</div>
 	<div id= "team_user" class="pie col-md-5">
-	</div>
+	</div> -->
 </div>
 </div>
 </div>
 <script type="text/javascript">
-$('document').ready(function() {
-    var options = { videoId: 'OL9gKtL2I-A', start: 3 };
-    $('#wrapper').tubular(options);
-    // f-UGhWj1xww cool sepia hd
-    // 49SKbS7Xwf4 beautiful barn sepia
-});
+
 	$(function () {
     var chart;
+    var options = { videoId: 'cVD9ucODtpg', start: 3 };
+    $('#wrapper').tubular(options);
     
-    $(document).ready(function () {
+
     	
     	// Build the chart
         $('#container').highcharts({
@@ -82,7 +79,6 @@ $('document').ready(function() {
                 data: <%= raw @team_users %>
         }]
         });
-    });
     
 });
 </script>
