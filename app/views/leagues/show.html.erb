@@ -12,7 +12,7 @@
                   	<li><%= join_league(current_user) %></li>
                   <% end %>
                   <% if @league.admin_id == current_user.id %>
-                  	<li><%= link_to "Delete", delete_league_path(@league.id), class: "red remove", style: "color:red;font-weight:700;" %></li>
+                  	<li><%= link_to "Delete", delete_league_path(@league.id), class: "red remove", style: "color:red;font-weight:700;font-size:18px;" %></li>
                   <% end %>
               </ul>
           </div>
@@ -55,7 +55,7 @@
 	              </div>
 	          </div><!--/.col-md-4-->
 	      </div>
-	      <em><p align="center">Use this link for inviting users <strong>"localhost:3000/join_league/<%= @league.url if @league.url%>"</strong></p></em>
+	      <em><p align="center" style="color:rgb(44, 52, 70);">Use this link for inviting users <strong>"localhost:3000/join_league/<%= @league.url if @league.url%>"</strong></p></em>
 	</section><!--/#services-->
 
     </section>

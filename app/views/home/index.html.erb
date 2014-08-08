@@ -1,4 +1,23 @@
-<div style="min-height:625px;">
+<div class="container container-custom" style="min-height:650px;">
+
+    <% if flash[:error] %>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <%= flash[:error] %>
+        </div>
+    <% end %>
+    <% if notice %>
+        <p class="alert alert-success alert-dismissible" role="alert" >
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= notice %>
+        </p>
+    <% end %>
+    <% if alert %>
+        <p class="alert alert-danger alert-dismissible" role="alert" ><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= alert %></p>
+    <% end %>
+
 <div class="conatiner container-custom" id="wrapper">
 
 <br>
