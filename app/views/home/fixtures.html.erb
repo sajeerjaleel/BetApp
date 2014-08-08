@@ -21,14 +21,15 @@
 		  <% @fixtures.each do |a| %>
 		  	<% if a.date != "" %>
 			  	<thead>
-			  		<tr>
+			  		<tr style="background-color:#2C3446;">
 			  			<td><b><%= a.date %></b></td>
+			  			<td colspan="2"></td>
 			  		</tr>
 			  	</thead>
 			  <% end %>
 			  <% if a.time and a.teams != ""%>
 			  	<tbody>
-					  <tr style="color:#0B0B3B;">
+					  <tr style="color:white;">
 					  	<td class="text-center"><em><%= a.time %></em></td>
 					  	<td class="text-center"><b><%= a.teams %></b></td>
 					  	<td class="text-center"><em><%= a.location %></em></td>
