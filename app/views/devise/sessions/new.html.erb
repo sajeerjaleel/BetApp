@@ -1,5 +1,16 @@
+<div class="container container-custom" style="min-height:650px;">
 
-<h2>Sign in</h2>
+<% if notice %>
+	<p class="alert alert-success alert-dismissible" role="alert" >
+  	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  	<%= notice %>
+	</p>
+<% end %>
+<% if alert %>
+	<p class="alert alert-danger alert-dismissible" role="alert" ><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= alert %></p>
+<% end %>
+
+<h2 style="color:rgb(44, 52, 70);"><em>Sign in</em></h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -26,9 +37,9 @@
 	    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
 	  <% end -%>
 
-	  <div><%= f.submit "Sign in", :class => "btn btn-default" %></div>
+	  <div><%= f.submit "Sign in", :class => "btn btn-success" %></div>
   </form>
-<% end %>
+<% end %><br>
 
 <%= render "devise/shared/links" %>
-
+</div>

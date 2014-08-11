@@ -1,3 +1,15 @@
+<div class="container container-custom">
+
+<% if notice %>
+	<p class="alert alert-success alert-dismissible" role="alert" >
+  	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  	<%= notice %>
+	</p>
+<% end %>
+<% if alert %>
+	<p class="alert alert-danger alert-dismissible" role="alert" ><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= alert %></p>
+<% end %>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -32,9 +44,11 @@
 	    </div>
 	  </div>
 
-	  <div><%= f.submit "Sign up", :class => "btn btn-default" %></div>
+	  <div><%= f.submit "Sign up", :class => "btn btn-success" %></div>
 
 	</form>
-<% end %>
+<% end %><br>
 
 <%= render "devise/shared/links" %>
+
+</div>
