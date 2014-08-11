@@ -30,7 +30,7 @@
       </tr>
       <% @leagues.each do |league|%>
       <tr>
-        <td><%= (@leagues.index(league))+1%></td>
+        <td><%= (@leagues_all.index(league))+1%></td>
         <td><%= link_to league.name, league_path(league.id) %></td> 
         <td><%= league.users.count %></td>
         <td class="coin_text box"><%= league.users.sum(:coins) %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>

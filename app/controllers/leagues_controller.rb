@@ -107,7 +107,8 @@ class LeaguesController < ApplicationController
 	end
 
 	def my_leagues
-		@leagues = current_user.leagues.page(params[:page]).per(10)
+		@leagues_all = current_user.leagues
+		@leagues = @leagues_all.page(params[:page]).per(10)
 	end
 
 	private 

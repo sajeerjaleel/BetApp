@@ -17,7 +17,7 @@
 <div class="container container-custom">
 <% unless @users.empty?%>
 <div align = center class = "back-grey">
-<h6 style = "color:black;">Your Position : <%= (@users.index(current_user))+1%></h6>
+<h6 style = "color:black;">Your Position : <%= @user_position %></h6>
 <table class="table table-bordered" style="width:800px">
 	<tr>
 	  <td>Position</td>
@@ -27,7 +27,7 @@
 	</tr>
 	<% @users.each do |user|%>
 	<tr>
-	  <td><%= (@users.index(user))+1%></td>
+	  <td><%= (@users_all.index(user))+1%></td>
 	  <td><%= user.full_name %></td> 
 	  <td><%= user.fav_team %></td>
 	  <td class="coin_text box"><%= user.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>

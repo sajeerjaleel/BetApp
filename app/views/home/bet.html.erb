@@ -153,7 +153,7 @@
 					<span><%= image_tag "coins.png" , :width => "30px", :height => "30px" %><span style="font-size:19px;" class="coin_text"><em>Coins</span> : </em></span> 
 				</div>
 				<div class="col-md-5">
-					<%= f.text_field :coins, :class => "dial", :value => "100"  %>
+					<%= f.text_field :coins, :class => "dial remove", :value => "100" %>
 				</div>
 				<div class="col-md-5">
 					<div class = "hidden coin_return" id = "ret_div"><em>Expected Return : </em><span id = "return" class="coin_text"></span><span><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </div>
@@ -408,6 +408,11 @@ $('.delete_comment').click(function(e){
 		var flag = "<%= @fixture.id%>"
   	show_return(flag);
 	});
+
+
+$( ".remove" ).each(function() {
+  $(this).attr('data-confirm', "Place bet?");
+});
 
 
 

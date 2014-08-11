@@ -1,3 +1,4 @@
+<div class="container container-custom" style="margin-top:150px;min-height:650px;">
 <h3 align = "center">Comments</h3>
 <br>
 
@@ -21,33 +22,36 @@
 
 
 <% unless @bet_comments.empty? %>
+<h3 align = "center">Comments</h3>
+<br>
+
 <% @bet_comments.each do |comment|%>
 <div class = "row">
 	<div class = "col-md-2">
 	</div>
 	<div class="col-md-8">
-		<div class="thumbnail <%=comment.id%>com">
-		<div class= "row">
-			<div class= "col-md-2">
-			<%= display_image(comment.user)%>
+		<div class="author well <%=comment.id%>com">
+			<div class="media">
+				<div class="pull-left">
+					<%= display_image(comment.user)%>
+				</div>
+				<div class="media-body">
+		      <div class="media-heading">
+		      	<strong><%= comment.user.nick_name %></strong>
+		      </div>
+					<p><%= comment.content%></p>
+					<span class = "comment_right" data-comment="<%=comment.id%>"><%=(image_tag "delete.png", width: "20", height: "20", class: "delete_comment") if (comment.user == current_user || current_user.email == "sajeerj@qburst.com")%></span>
+					<span id= "<%= comment.id%>">
+						<span class = "span_right" data-commentid= "<%= comment.id%>">
+						<%= image_tag "up.png", width: "15", height: "18", class: "like"+comment.status(current_user)%>&nbsp<%= comment.like %>
+						</span>
+						<span class= "span_down" data-commentid= "<%= comment.id%>">
+						<%= image_tag "down.png", width: "15", height: "18", class: "dislike"+comment.status(current_user)%>&nbsp<%= comment.dislike %>
+						</span>
+					</span>
+					<p><span class ="created_at"><%= comment.created_at.strftime("Commented at %d-%m-%Y %H:%M:%S") %></span></p>
+				</div>
 			</div>
-			<div class="content col-md-6 thumbnail"><p><%= comment.content%></p>
-			</div>
-			<span class = "comment_right" data-comment="<%=comment.id%>"><%=(image_tag "delete.png", width: "20", height: "20", class: "delete_comment") if comment.user == current_user%></span>
-		</div>
-		<div class="row">
-		<span class="fullname"><%= comment.user.full_name%></span>
-		<span id= "<%= comment.id%>">
-		<span class = "span_right" data-commentid= "<%= comment.id%>">
-		<%= image_tag "green_up.png", width: "20", height: "20", class: "like"+comment.status(current_user)%><%= comment.like%> Likes
-		</span>
-		<span class= "span_down" data-commentid= "<%= comment.id%>">
-		<%= image_tag "red_down.png", width: "20", height: "20", class: "dislike"+comment.status(current_user)%><%= comment.dislike%> Dislikes
-		</span>
-		</span>
-
-			<span class ="created_at"><%= comment.created_at.strftime("Commented at %d-%m-%Y %H:%M:%S") %></span>
-		</div>
 		</div>
 	</div>
 </div>
@@ -60,6 +64,7 @@
     <div><%= paginate @bet_comments, :outer_window => 1 %></div>
 </div>
 <% end %>
+</div>
 
  <script type="text/javascript">
  	
