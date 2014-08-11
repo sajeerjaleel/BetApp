@@ -2,6 +2,7 @@ class AdminsController < ApplicationController
 
 	def index
 		@bet_matches = BetMatch.where('completed = ?', false)
+		authorize @bet_matches, :is_admin?
 	end
 
 	def remove_bets
