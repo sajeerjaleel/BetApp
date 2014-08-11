@@ -109,7 +109,7 @@
 <div class="col-xs-2 col-md-2"></div>
 	<div class="col-xs-4 col-md-3">
 			<%= image_tag "#{@fixture.home_team}.png", class: "team_image", :align => "center" %><br><br>
-			<strong><p align="center"><%= @fixture.home_team %></p></strong>
+			<strong><p align="center"><em><%= @fixture.home_team %></em></p></strong>
 	</div>
 	<div class="col-xs-1 col-md-2">
 		<%= image_tag "vs.png",class: "vs_image", :align => "center" %>
@@ -121,49 +121,55 @@
 	</div>
 	<div class="col-xs-4 col-md-3">
 			<%= image_tag "#{@fixture.away_team}.png", class: "team_image" %><br><br>
-			<strong><p align="center"><%= @fixture.away_team %></p></strong>
+			<strong><p align="center"><em><%= @fixture.away_team %></em></p></strong>
 	</div>
-</div><br>
+</div><br><legend></legend><br>
 
 <% unless placed_bet %>
 
 	<%= form_for(@bet, :url => createbet_path(@fixture.id), method: :post, validate: true) do |f| %>
 		<div class="row">
-			<div class="col-xs-6 col-md-4">
+			<div class="col-xs-6 col-md-2">
 			</div>
-			<div class="col-xs-9 col-md-8" style="padding-left: 60px;font-size:20px;">
+			<div class="col-xs-9 col-md-10" style="padding-left:40px;font-size:20px;">
 				<fieldset class="radios">
-			   	<label class="label_radio r_on" style="color:black;">
+					<div class="col-xs-9 col-md-4">
+			   		<label class="label_radio r_on" style="color:#0B173B;">
 			     	<%= radio_button_tag :prediction, 'home', :checked => true, :name =>"iCheck", :id => "home" %>
 			     	<%= @fixture.home_team %></label>
-			   	<label class="label_radio" style="color:black;">
+			    </div>
+			    <div class="col-xs-9 col-md-4">
+			   		<label class="label_radio" style="color:#0B173B;">
 			     	<%= radio_button_tag :prediction, 'draw', :checked => true, :name =>"iCheck", :id => "draw" %>
 			     	Draw</label>
-			   	<label class="label_radio" style="color:black;">
+			    </div>
+			    <div class="col-xs-9 col-md-3">			    
+			   		<label class="label_radio" style="color:#0B173B;">
 			     	<%= radio_button_tag :prediction, 'away', :checked => true, :name =>"iCheck", :id => "away" %>
 			     	<%= @fixture.away_team %></label>
+			    </div>
 			 </fieldset>
 			</div>
 		</div><br>
 		<div class="row">
-			<div class="col-xs-6 col-md-4">
+			<div class="col-xs-6 col-md-2">
 			</div>
-			<div class="col-xs-6 col-md-8">
-				<div class="col-md-2" style="margin-top: 60px;">
+			<div class="col-xs-6 col-md-10" style="padding-left:68px;">
+				<div class="col-md-3" style="margin-top: 60px;">
 					<span><%= image_tag "coins.png" , :width => "30px", :height => "30px" %><span style="font-size:19px;" class="coin_text"><em>Coins</span> : </em></span> 
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<%= f.text_field :coins, :class => "dial remove", :value => "100" %>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<div class = "hidden coin_return" id = "ret_div"><em>Expected Return : </em><span id = "return" class="coin_text"></span><span><%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </div>
 				</div>
 			</div>
 		</div><br>
 		<div class="row">
-			<div class="col-xs-6 col-md-6">
+			<div class="col-xs-6 col-md-5">
 			</div>
-			<div class="col-xs-6 col-md-4">
+			<div class="col-xs-6 col-md-4" style="padding-left:60px;">
 				<%= f.submit "Submit", value: "Submit", class: "btn btn-success btn-lg", :id => "submit", :disable_with => 'Submit' %>
 			</div>
 		</div><br>
