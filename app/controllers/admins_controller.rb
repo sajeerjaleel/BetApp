@@ -5,6 +5,7 @@ class AdminsController < ApplicationController
 	end
 
 	def remove_bets
+		authorize @bet_matches = BetMatch.all
 		BetMatch.destroy_all
 		@bet_fixtures = BetFixture.where(bet_created: true)
 		unless @bet_fixtures.empty?

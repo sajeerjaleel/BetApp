@@ -6,6 +6,12 @@
             </div>
             <div class="col-sm-6">
                 <ul class="breadcrumb pull-right">
+                	<% if current_user %>
+                		<li><a href="/home" style="color:#428bca;">Home</a></li>
+                	<% else %>
+                		<li><a href="/" style="color:#428bca;">Home</a></li>
+                	<% end %>
+                	<li>Results</li>
                 </ul>
             </div>
         </div>
