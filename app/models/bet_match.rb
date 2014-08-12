@@ -27,47 +27,52 @@ class BetMatch < ActiveRecord::Base
 
 			@user_bets = user.bets.where(bet_fixture_id: @fixture.id)
 			@user_coins  = @user_bets.first.coins
-			@user_bet = @user_bets.first.prediction
 
-			if @user_bet == "home" and result == "home"
+			@user_bets.each do |user_bet|
 
-				@user_share = (@user_coins.to_f / @home_coins.to_f)
-				@user_win_coin = (@user_share * @total_coins).to_i
-				user.coins += @user_win_coin
-				user.save
-				@user_bets.first.update(coins_won:  @user_win_coin)
+				@user_bet = user_bet.prediction
 
-			elsif @user_bet == "home" and result != "home"
+				if @user_bet == "home" and result == "home"
 
-				@user_lose_coin = (@user_coins).to_i
-				@user_bets.first.update(coins_won:  -(@user_lose_coin))
+					@user_share = (@user_coins.to_f / @home_coins.to_f)
+					@user_win_coin = (@user_share * @total_coins).to_i
+					user.coins += @user_win_coin
+					user.save
+					user_bet.update(coins_won:  @user_win_coin)
 
-			elsif @user_bet == "draw" and result =="draw"
+				elsif @user_bet == "home" and result != "home"
 
-				@user_share = (@user_coins.to_f  / @draw_coins.to_f)
-				@user_win_coin = (@user_share * @total_coins).to_i
-				user.coins+= @user_win_coin
-				user.save
-				@user_bets.first.update(coins_won:  @user_win_coin)
+					@user_lose_coin = (@user_coins).to_i
+					user_bet.update(coins_won:  -(@user_lose_coin))
+
+				elsif @user_bet == "draw" and result =="draw"
+
+					@user_share = (@user_coins.to_f  / @draw_coins.to_f)
+					@user_win_coin = (@user_share * @total_coins).to_i
+					user.coins+= @user_win_coin
+					user.save
+					user_bet.update(coins_won:  @user_win_coin)
 
 
-			elsif @user_bet == "draw" and result !="draw"
+				elsif @user_bet == "draw" and result !="draw"
 
-				@user_lose_coin = (@user_coins).to_i
-				@user_bets.first.update(coins_won:  -(@user_lose_coin))
+					@user_lose_coin = (@user_coins).to_i
+					user_bet.update(coins_won:  -(@user_lose_coin))
 
-			elsif @user_bet == "away" and result =="away"
+				elsif @user_bet == "away" and result =="away"
 
-				@user_share = (@user_coins.to_f  / @away_coins.to_f)
-				@user_win_coin = (@user_share * @total_coins).to_i
-				user.coins+= @user_win_coin
-				user.save
-				@user_bets.first.update(coins_won:  @user_win_coin)
+					@user_share = (@user_coins.to_f  / @away_coins.to_f)
+					@user_win_coin = (@user_share * @total_coins).to_i
+					user.coins+= @user_win_coin
+					user.save
+					user_bet.update(coins_won:  @user_win_coin)
 
-			elsif @user_bet == "away" and result !="away"
+				elsif @user_bet == "away" and result !="away"
 
-				@user_lose_coin = (@user_coins).to_i
-				@user_bets.first.update(coins_won:  -(@user_lose_coin))
+					@user_lose_coin = (@user_coins).to_i
+					user_bet.update(coins_won:  -(@user_lose_coin))
+
+				end
 
 			end
 

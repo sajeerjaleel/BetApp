@@ -196,6 +196,8 @@
   </div>
 </div>
 
+<legend></legend><br>
+
 <% end %>
 
 	<% else %>
@@ -209,32 +211,59 @@
 
 	<% end %>
 
-<% else %>
+<% end %>
 
-	<br><br>
+<% if atleast_one_bet > 0 %>
+
 	<div class="row">
+		<div class="col-xs-6 col-md-1">
+		</div>
 		<div class="col-xs-6 col-md-4">
+			<h3 style="text-decoration:underline"><em>Bet Summary</em></h3>
 		</div>
-		<div class="col-xs-6 col-md-6">
-			<p><span class="text-large"> Bet Placed for : </span> <span style = "color:#2ecc71;font-size:18px;font-weight:700;" ><%= predicted_team  %></span> </p>
-		</div>
-	</div><br>
+	</div>
 	<div class="row">
-		<div class="col-xs-6 col-md-5">
-		</div>
-		<div class="col-xs-6 col-md-7">
-			<p> <span class="text-large">Coins : </span> <span class="coin_text" ><%= @placed_bet.first.coins  %> <%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </p>
-		</div>
-	</div><br>
-	<div class="row">
-		<div class="col-xs-6 col-md-4">
-		</div>
-		<div class="col-xs-6 col-md-6">
-			<p> <span class="text-large">Current Bet value : </span> <span class="coin_text" ><%= result  %> <%= image_tag "coins.png" , :width => "30px", :height => "30px" %></span> </p>
-		</div>
-	</div><br><br>
+	<div class="col-xs-6 col-md-2">
+	</div>
+	<div class="col-xs-6 col-md-8">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>
+					<td><h4 style="color:#0B2161"><%= @fixture.home_team %></h4></td>
+					<td><h4 style="color:#0B2161">Draw</h4></td>
+					<td><h4 style="color:#0B2161"><%= @fixture.away_team %></h4></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><h5>Bet Placed</h5></td>
+				  <td class="coin_text"><%= user_bets("home") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= user_bets("draw") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= user_bets("away") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				</tr>
+				<tr>
+					<td><h5>Expected Return</h5></td>
+				  <td class="coin_text"><%= result("home") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= result("draw") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= result("away") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div><br><legend></legend><br>
+
+
 
 <% end %>
+
+<div class="row">
+		<div class="col-xs-6 col-md-1">
+		</div>
+		<div class="col-xs-6 col-md-4">
+			<h3 style="text-decoration:underline;"><em>Bet Stats</em></h3>
+		</div>
+	</div>
 <div class="row">
 	<div class="col-xs-6 col-md-2">
 	</div>

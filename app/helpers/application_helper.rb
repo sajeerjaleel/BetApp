@@ -27,7 +27,7 @@ module ApplicationHelper
 	end
 
 	def placed_bet(fixture_id)
-		p current_user.bet_completed?(fixture_id)
+		current_user.bet_completed?(fixture_id)
 	end
 
 	def predicted_team 
@@ -75,31 +75,35 @@ module ApplicationHelper
 		a
 	end
 
-	def result 
+	def result bet
     @fixture = BetFixture.find params[:id]
     @bets    = @fixture.bets
     @user    = current_user
-    @user_bets = current_user.bets.where(bet_fixture_id: @fixture.id)
-    @user_bet = @user_bets.first.prediction
+    user_bets = current_user.bets.where(bet_fixture_id: @fixture.id)
+    user_home_bet = user_bets.where(prediction: "home")
+		user_draw_bet = user_bets.where(prediction: "draw")
+		user_away_bet = user_bets.where(prediction: "away")
     
     @home_bets = @bets.where(prediction: "home")
     @draw_bets = @bets.where(prediction: "draw")
     @away_bets = @bets.where(prediction: "away")
 
     @total_coins = @bets.sum(:coins)
-    @user_coins  = @user_bets.first.coins
+    user_home_coins = user_home_bet.first.coins rescue nil
+    user_draw_coins = user_draw_bet.first.coins rescue nil
+    user_away_coins = user_away_bet.first.coins rescue nil
     @home_coins  = @home_bets.sum(:coins)
     @draw_coins  = @draw_bets.sum(:coins)
     @away_coins  = @away_bets.sum(:coins)
 
-    if @user_bet == "home"
-        @user_share = (@user_coins.to_f / @home_coins.to_f)
+    if bet == "home"
+        @user_share = (user_home_coins.to_f / @home_coins.to_f)
         @user_win_coin = @user_share * @total_coins
-    elsif @user_bet == "draw"
-        @user_share = (@user_coins.to_f  / @draw_coins.to_f)
+    elsif bet == "draw"
+        @user_share = (user_draw_coins  / @draw_coins.to_f)
         @user_win_coin = @user_share * @total_coins
-    elsif @user_bet == "away"
-        @user_share = (@user_coins.to_f  / @away_coins.to_f)
+    elsif bet == "away"
+        @user_share = (user_away_coins  / @away_coins.to_f)
         @user_win_coin = @user_share * @total_coins
     end
     return @user_win_coin.to_i
@@ -121,6 +125,26 @@ module ApplicationHelper
 		else
 			"N/A"
 		end
+	end
+
+	def user_bets (bet)
+		@fixture = BetFixture.find params[:id]
+		user_bets = current_user.bets.where(bet_fixture_id: @fixture.id)
+		user_home_bet = user_bets.where(prediction: "home")
+		user_draw_bet = user_bets.where(prediction: "draw")
+		user_away_bet = user_bets.where(prediction: "away")
+			if bet == "home"
+				return user_home_bet.first.coins
+			elsif bet == "draw"
+				return user_draw_bet.first.coins
+			elsif bet == "away"
+				return user_away_bet.first.coins
+			end
+	end
+
+	def atleast_one_bet
+		@fixture = BetFixture.find params[:id]
+		return current_user.bets.where(bet_fixture_id: @fixture.id).count
 	end
 
 end
