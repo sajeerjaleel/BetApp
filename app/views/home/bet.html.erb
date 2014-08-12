@@ -137,7 +137,7 @@
 				<fieldset class="radios">
 					<div class="col-xs-9 col-md-4">
 			   		<label class="label_radio r_on" style="color:#0B173B;">
-			     	<%= radio_button_tag :prediction, 'home', :checked => true, :name =>"iCheck", :id => "home" %>
+			     	<%= radio_button_tag :prediction, 'home', :name =>"iCheck", :id => "home" %>
 			     	<%= @fixture.home_team %></label>
 			    </div>
 			    <div class="col-xs-9 col-md-4">
@@ -147,7 +147,7 @@
 			    </div>
 			    <div class="col-xs-9 col-md-3">			    
 			   		<label class="label_radio" style="color:#0B173B;">
-			     	<%= radio_button_tag :prediction, 'away', :checked => true, :name =>"iCheck", :id => "away" %>
+			     	<%= radio_button_tag :prediction, 'away', :name =>"iCheck", :id => "away" %>
 			     	<%= @fixture.away_team %></label>
 			    </div>
 			 </fieldset>
