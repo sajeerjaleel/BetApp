@@ -40,4 +40,22 @@ class User < ActiveRecord::Base
     has_prev = leagues.count == 0 ? false : true
   end
   
+  def bet_completed?(fixture_id)
+    home = bets.where("bet_fixture_id = ? AND prediction = ?",fixture_id,"home")
+    draw = bets.where("bet_fixture_id = ? AND prediction = ?",fixture_id,"draw")
+    away = bets.where("bet_fixture_id = ? AND prediction = ?",fixture_id,"away")
+    p "==================================================================" 
+     p bet_completed = !(home.length.zero? || draw.length.zero? || away.length.zero?)
+     p "home" + home.length.to_s
+     p  "away" + away.length.to_s
+     p "draw" + draw.length.to_s
+    p "==================================================================" 
+
+    bet_completed
+  end
+
+  def valid_bet?(prediction,fixture_id)
+    bet_count = bets.where("bet_fixture_id = ? AND prediction = ?",fixture_id,prediction).length
+    validity = bet_count == 0 ? true : false
+  end
 end

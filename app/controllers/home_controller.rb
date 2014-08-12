@@ -75,20 +75,24 @@ class HomeController < ApplicationController
 	end
 
 	def createbet
-		@user = current_user
-		@fixture = BetFixture.find (params[:id])
-		@bet = Bet.new(bet_params)
-		@bet.user_id = current_user.id
-		@bet.bet_fixture_id = @fixture.id
-		@bet.prediction = params[:prediction]
-		@user.coins = @user.coins - @bet.coins
-		return redirect_to bet_path, :alert => "No enough coins" if (@user.coins < 0)
-		@user.save
-		if @bet.save
-			redirect_to bet_path, :notice => "Successfully placed Bet"
-		else
-      render @bet.errors.full_messages
-    end
+		if current_user.valid_bet?(params[:prediction],params[:id])
+			@user = current_user
+			@fixture = BetFixture.find (params[:id])
+			@bet = Bet.new(bet_params)
+			@bet.user_id = current_user.id
+			@bet.bet_fixture_id = @fixture.id
+			@bet.prediction = params[:prediction]
+			@user.coins = @user.coins - @bet.coins
+			return redirect_to bet_path, :alert => "No enough coins" if (@user.coins < 0)
+			@user.save
+			if @bet.save
+				redirect_to bet_path, :notice => "Successfully placed Bet"
+			else
+	      render @bet.errors.full_messages
+	    end
+	  else
+	  	redirect_to bet_path, :alert => "Bet placed with this prediction, Choose another prediction."
+	  end
 	end
 
 	def vote

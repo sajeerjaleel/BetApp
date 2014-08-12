@@ -26,19 +26,8 @@ module ApplicationHelper
 		image_name+".png"
 	end
 
-	def placed_bet
-		@count = 0
-		current_user.bets.each do |bet|
-			if bet.bet_fixture_id.equal?(@fixture.id ) 
-				@count = 1 
-				break 
-			end 
-		end 
-		if @count == 0 
-			return false
-		else
-			return true	
-		end 
+	def placed_bet(fixture_id)
+		p current_user.bet_completed?(fixture_id)
 	end
 
 	def predicted_team 

@@ -125,7 +125,7 @@
 	</div>
 </div><br><legend></legend><br>
 
-<% unless placed_bet %>
+<% unless placed_bet(@fixture.id) %>
 
 	<% if current_user.coins > 0 %>
 
