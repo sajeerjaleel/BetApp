@@ -157,4 +157,32 @@ module ApplicationHelper
 		end
 	end
 
+	def fav_team_icon user
+		if user.fav_team == "Leicester City"
+			image_tag "Leicester.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "Manchester City"
+			image_tag "Man City.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "Manchester United"
+			image_tag "Man Utd.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "Newcastle United"
+			image_tag "Newcastle.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "Queens Park Rangers"
+			image_tag "QPR.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "Stoke City"
+			image_tag "Stoke.png" , :width => "25px", :height => "25px"	
+		elsif user.fav_team == "Swansea City"
+			image_tag "Swansea.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "Tottenham Hotspur"
+			image_tag "Spurs.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "West Bromwich Albion"
+			image_tag "west Brom.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "West Ham United"
+			image_tag "west Ham.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "not selected"
+			return nil
+		else
+			image_tag "#{user.fav_team}.png" , :width => "25px", :height => "25px"
+		end
+	end
+
 end
