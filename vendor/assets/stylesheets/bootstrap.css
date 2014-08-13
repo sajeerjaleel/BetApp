@@ -4589,7 +4589,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-nav > li {
     float: left;
-    border-right: 1px solid #585858;
+    border-right: 1px solid rgb(46, 204, 113);
     font-size:15px;
     font-weight:700;
     min-width: 100px;

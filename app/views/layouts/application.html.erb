@@ -3,6 +3,7 @@
 
 	<head>
 	  <title>Bet380</title>
+	  <%= favicon_link_tag('icon.png')%>
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag "chart_layout", 'data-turbolinks-track' => true %>
@@ -52,18 +53,17 @@
 
 	            <li class="dropdown">
 	            	<%#= display_image(current_user) %>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><i class="icon-angle-down"></i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-cog"></span>&nbsp&nbsp<i class="icon-angle-down"></i></a>
                 <ul class="dropdown-menu">
                     <li><%= link_to "Edit Profile",  edit_user_path(current_user)%></li>
-                    <li class="divider"></li>
                     <li><%= link_to "Rules", rules_path %></li>
                     <li class="divider"></li>
                     <li><%= link_to "Logout", destroy_user_session_path, method: :delete, title: "Logout" %></li>
                 </ul>
               </li>
 
-              <li class="box">
-              	<p class="gold"><%= image_tag "coins.png" , :width => "30px", :height => "30px" %>
+              <li class="box" style="border-right: 0px solid;">
+              	<p class="gold">&nbsp&nbsp<%= image_tag "coins.png" , :width => "30px", :height => "25px" %>
 							<%= current_user.coins %></p>
               </li>
 
