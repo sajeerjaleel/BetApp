@@ -238,15 +238,15 @@
 			<tbody>
 				<tr>
 					<td><h5>Bet Placed</h5></td>
-				  <td class="coin_text"><%= user_bets("home") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
-				  <td class="coin_text"><%= user_bets("draw") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
-				  <td class="coin_text"><%= user_bets("away") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= user_bets("home") || "Not placed" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= user_bets("draw") || "Not placed" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= user_bets("away") || "Not placed" %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				</tr>
 				<tr>
 					<td><h5>Expected Return</h5></td>
-				  <td class="coin_text"><%= result("home") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
-				  <td class="coin_text"><%= result("draw") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
-				  <td class="coin_text"><%= result("away") rescue nil %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= result("home") || 0 %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= result("draw") || 0 %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
+				  <td class="coin_text"><%= result("away") || 0 %><%= image_tag "coins.png" , :width => "15px", :height => "15px" %></td>
 				</tr>
 			</tbody>
 		</table>

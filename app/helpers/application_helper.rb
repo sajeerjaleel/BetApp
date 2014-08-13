@@ -97,16 +97,16 @@ module ApplicationHelper
     @away_coins  = @away_bets.sum(:coins)
 
     if bet == "home"
-        @user_share = (user_home_coins.to_f / @home_coins.to_f)
-        @user_win_coin = @user_share * @total_coins
+        @user_share = (user_home_coins.to_f / @home_coins.to_f) rescue nil
+        @user_win_coin = @user_share * @total_coins rescue nil
     elsif bet == "draw"
-        @user_share = (user_draw_coins  / @draw_coins.to_f)
-        @user_win_coin = @user_share * @total_coins
+        @user_share = (user_draw_coins  / @draw_coins.to_f) rescue nil
+        @user_win_coin = @user_share * @total_coins rescue nil
     elsif bet == "away"
-        @user_share = (user_away_coins  / @away_coins.to_f)
-        @user_win_coin = @user_share * @total_coins
+        @user_share = (user_away_coins  / @away_coins.to_f) rescue nil
+        @user_win_coin = @user_share * @total_coins rescue nil
     end
-    return @user_win_coin.to_i
+    return @user_win_coin.to_i rescue nil
   end
 
   def team_name(id)
@@ -134,17 +134,27 @@ module ApplicationHelper
 		user_draw_bet = user_bets.where(prediction: "draw")
 		user_away_bet = user_bets.where(prediction: "away")
 			if bet == "home"
-				return user_home_bet.first.coins
+				return user_home_bet.first.coins rescue nil
 			elsif bet == "draw"
-				return user_draw_bet.first.coins
+				return user_draw_bet.first.coins rescue nil
 			elsif bet == "away"
-				return user_away_bet.first.coins
+				return user_away_bet.first.coins rescue nil
 			end
 	end
 
 	def atleast_one_bet
 		@fixture = BetFixture.find params[:id]
 		return current_user.bets.where(bet_fixture_id: @fixture.id).count
+	end
+
+	def bet_history_team bet
+		if bet.prediction == "home"
+			return bet.bet_fixture.home_team
+		elsif bet.prediction == "draw"
+			return "Draw"
+		elsif bet.prediction == "away"
+			return bet.bet_fixture.away_team
+		end
 	end
 
 end
