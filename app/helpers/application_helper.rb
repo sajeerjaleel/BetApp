@@ -157,15 +157,17 @@ module ApplicationHelper
 		end
 	end
 
-	def fav_team_icon user
-		if user.fav_team == "Man United"
+	def team_icon team
+		if team == "Man United"
 			image_tag "Man Utd.png" , :width => "25px", :height => "25px"
-		elsif user.fav_team == "Tottenham"
+		elsif team == "Tottenham"
 			image_tag "Spurs.png" , :width => "25px", :height => "25px"
-		elsif user.fav_team == "not selected"
+		elsif team == "not selected"
+			return nil
+		elsif team == "Draw"
 			return nil
 		else
-			image_tag "#{user.fav_team}.png" , :width => "25px", :height => "25px"
+			image_tag "#{team}.png" , :width => "25px", :height => "25px"
 		end
 	end
 

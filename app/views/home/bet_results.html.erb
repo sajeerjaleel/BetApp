@@ -33,7 +33,7 @@
 				<tr>
 				  <td><%= (@users_all.index(user))+1%></td>
 				  <td><%= user.full_name %></td> 
-				  <td><%= fav_team_icon(user) %>&nbsp<%= user.fav_team %></td>
+				  <td><%= team_icon(user.fav_team) %>&nbsp<%= user.fav_team %></td>
 				  <td class="coin_text box"><%= user.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
 				</tr>
 				<% end%>
