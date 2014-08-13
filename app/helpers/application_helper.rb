@@ -162,6 +162,7 @@ module ApplicationHelper
 			image_tag "Man Utd.png" , :width => "25px", :height => "25px"
 		elsif user.fav_team == "Tottenham"
 			image_tag "Spurs.png" , :width => "25px", :height => "25px"
+		elsif user.fav_team == "not selected"
 			return nil
 		else
 			image_tag "#{user.fav_team}.png" , :width => "25px", :height => "25px"
