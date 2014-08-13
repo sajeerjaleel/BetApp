@@ -12,31 +12,36 @@
             </div>
         </div>
     </div>
-</section>
+</section><br>
 
 
 <div class="container" style="min-height:650px;">
-<div class="container container-custom">
 <% unless @users.empty?%>
-<div align = center class = "back-grey">
-<h6 style = "color:black;">Your Position : <%= @user_position %></h6>
-<table class="table table-bordered" style="width:800px">
-	<tr>
-	  <td>Position</td>
-	  <td>Nick Name</td> 
-	  <td>Team</td>
-	  <td>Coins</td>
-	</tr>
-	<% @users.each do |user|%>
-	<tr>
-	  <td><%= (@users_all.index(user))+1%></td>
-	  <td><%= user.full_name %></td> 
-	  <td><%= user.fav_team %></td>
-	  <td class="coin_text box"><%= user.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
-	</tr>
-	<% end%>
-</table>
-</div>
+	<div class="row">
+		<div class="col-xs-6 col-md-2">
+		</div>
+		<div class="col-xs-6 col-md-8">
+			<table class="table table-bordered" style="width:800px">
+				<tr>
+				  <td>Position</td>
+				  <td>Nick Name</td> 
+				  <td>Team</td>
+				  <td>Coins</td>
+				</tr>
+				<% @users.each do |user|%>
+				<tr>
+				  <td><%= (@users_all.index(user))+1%></td>
+				  <td><%= user.full_name %></td> 
+				  <td><%= user.fav_team %></td>
+				  <td class="coin_text box"><%= user.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
+				</tr>
+				<% end%>
+			</table>
+		</div>
+		<div class="col-xs-6 col-md-2">
+			<h4 style = "color:black;"><em>Your Position : </em><strong><%= @user_position %></strong></h4>
+		</div>
+	</div>
 <% end %>
 
 <% unless @users.empty?%>
@@ -44,5 +49,4 @@
     <div><%= paginate @users, :outer_window => 1 %></div>
 </div>
 <% end %>
-</div>
 </div>
