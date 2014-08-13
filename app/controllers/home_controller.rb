@@ -50,6 +50,11 @@ class HomeController < ApplicationController
 		@fixture = BetFixture.find params[:id]
 		@bet_comments = @fixture.comments.order('created_at DESC').page(params[:page]).per(10)
 	end
+
+	def bet_history
+		@bets_all = current_user.bets
+		@bets = @bets_all.page(params[:page]).per(10)
+	end
 	
 	def bet
 		@fixture = BetFixture.find (params[:id])

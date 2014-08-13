@@ -36,10 +36,9 @@
 					</thead>
 
 					<tbody>
-						<% sl = 0%>
-						<% current_user.bets.each do |bet| %>
+						<% @bets.each do |bet| %>
 							<tr>
-								<td><%= sl = sl+1 %></td>
+								<td><%= @bets_all.index(bet)+1 %></td>
 							  <td><%= bet.bet_fixture.home_team %> vs 
 							  		<%= bet.bet_fixture.away_team %></td>
 							  <td class="coin_text box"><%= bet.coins %><%= image_tag "coins.png" , :width => "25px", :height => "25px" %></td>
@@ -55,6 +54,12 @@
 
 		<h3 align = "center" style = "font-weight:500;" >No current Bets</h3>
 
+	<% end %>
+
+	<% unless @bets.empty?%>
+		<div align = center class="row">
+		    <div><%= paginate @bets, :outer_window => 1 %></div>
+		</div>
 	<% end %>
 	</div>
 
