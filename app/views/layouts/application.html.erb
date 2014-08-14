@@ -10,6 +10,22 @@
 	  <%= csrf_meta_tags %>
 	</head>
 
+	  <script type="text/javascript">
+
+			var ready;
+			ready = function() {
+			  $(".loader").fadeOut("slow");
+			};
+
+			$(document).ready(ready);
+			$(document).on('page:load', ready);
+			// $(window).load(function() {
+			  
+			  
+
+			// })
+		</script>
+
 	<% if current_user %> 
 		<body>
 
