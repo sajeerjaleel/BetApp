@@ -5,29 +5,35 @@
 		<div class = "thumbnail col-md-8" align = "center" ><strong>Update your profile, <%= @user.email%></strong></div>
 </div>
 <div class= "container-narrow" align= "center">
-<%= form_for(@user, url: user_path(@user.id), method: :put) do |f| %>
-	<p><div>
-		First Name :
-    <%= f.text_field :first_name, placeholder: "First Name"%>
-  </div></p>
+	<div class="row">
+		<div class="col-xs-6 col-md-4">
+		</div>
+		<div class="col-xs-6 col-md-4">
+			<%= form_for(@user, url: user_path(@user.id), method: :put) do |f| %>
+				<p><div>
+					First Name :
+			    <%= f.text_field :first_name, placeholder: "First Name", :class => "form-control"%>
+			  </div></p>
 
-  <p><div>
-  Last Name :
-	<%= f.text_field :last_name, placeholder: "Last Name"%>
-	</div></p>
+			  <p><div>
+			  Last Name :
+				<%= f.text_field :last_name, placeholder: "Last Name", :class => "form-control"%>
+				</div></p>
 
-	<p><div>
-	Nick Name :
-	<%= f.text_field :nick_name, placeholder: "Nick Name"%>
-	</div></p>
+				<p><div>
+				Nick Name :
+				<%= f.text_field :nick_name, placeholder: "Nick Name", :class => "form-control"%>
+				</div></p><br>
 
-	<p><div>
-	Favourite Team :
-	<%= f.select(:team_id, Team.all.collect {|a| [a.team_name, a.id]}, {:include_blank => "Select"}) %>
-	</div></p>
-	<%= f.submit "Update" %>
+				<p><div>
+				Favourite Team :
+				<%= f.select(:team_id, Team.all.collect {|a| [a.team_name, a.id]}, {:include_blank => "Select", class: "selectpicker"}) %>
+				</div></p><br>
+				<%= f.submit "Update", class: "btn btn-primary" %>
+		</div>
+	</div>
 
-<% end %>
+			<% end %>
 <%= link_to "Skip this Step", home_path%>
 </div>
 </div>
