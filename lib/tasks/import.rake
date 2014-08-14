@@ -83,45 +83,45 @@ task :import => :environment do
 	f = Result.where(:date => "ClubPldPts")
 	f.delete_all
 
-	# ================================================
+	# # ================================================
 
-	 p "Oraganising fetched data to BetFixture model..."
+	#  p "Oraganising fetched data to BetFixture model..."
 
-	 with_date = Fixture.where('date != ?',"").map(&:id)
-	 count = with_date.count
-	 i = 0
-	 while (with_date[i] != with_date.last)
-	 	p "==========================="
-	 	p with_date[i]
-	 	fixs = Fixture.where("id BETWEEN ? AND ?",(with_date[i]+1),(with_date[i+1]-1))
-	 	date = Fixture.find(with_date[i]).date
-	 	fixs.each do |fix|
-	 		bet_fixture = BetFixture.new
-	 		bet_fixture.date = date
-	 		bet_fixture.time = fix.time
-	 		teams = fix.teams.split(" v ")
-	 		bet_fixture.home_team = teams[0]
-	 		bet_fixture.away_team = teams[1]
-	 		bet_fixture.location = fix.location
-	 		bet_fixture.save
-	 		p "<<<#{bet_fixture.id}>>>created with date <<<<<< #{date} >>>>>>>"
-	 	end
-	 	i = i+1
-	 end
-	 p "final adding..........."
-	 # ==========================================================
-	 date = Fixture.find(with_date.last).date
-	 fixs = Fixture.where("id BETWEEN ? AND ?",(with_date.last+1),(Fixture.last.id))
-	 fixs.each do |fix|
-	 		bet_fixture = BetFixture.new
-	 		bet_fixture.date = date
-	 		bet_fixture.time = fix.time
-	 		teams = fix.teams.split(" v ")
-	 		bet_fixture.home_team = teams[0]
-	 		bet_fixture.away_team = teams[1]
-	 		bet_fixture.location = fix.location
-	 		bet_fixture.save
-	 		p "<<<#{bet_fixture.id}>>>created with date <<<<<< #{date} >>>>>>>"
-	 	end
+	#  with_date = Fixture.where('date != ?',"").map(&:id)
+	#  count = with_date.count
+	#  i = 0
+	#  while (with_date[i] != with_date.last)
+	#  	p "==========================="
+	#  	p with_date[i]
+	#  	fixs = Fixture.where("id BETWEEN ? AND ?",(with_date[i]+1),(with_date[i+1]-1))
+	#  	date = Fixture.find(with_date[i]).date
+	#  	fixs.each do |fix|
+	#  		bet_fixture = BetFixture.new
+	#  		bet_fixture.date = date
+	#  		bet_fixture.time = fix.time
+	#  		teams = fix.teams.split(" v ")
+	#  		bet_fixture.home_team = teams[0]
+	#  		bet_fixture.away_team = teams[1]
+	#  		bet_fixture.location = fix.location
+	#  		bet_fixture.save
+	#  		p "<<<#{bet_fixture.id}>>>created with date <<<<<< #{date} >>>>>>>"
+	#  	end
+	#  	i = i+1
+	#  end
+	#  p "final adding..........."
+	#  # ==========================================================
+	#  date = Fixture.find(with_date.last).date
+	#  fixs = Fixture.where("id BETWEEN ? AND ?",(with_date.last+1),(Fixture.last.id))
+	#  fixs.each do |fix|
+	#  		bet_fixture = BetFixture.new
+	#  		bet_fixture.date = date
+	#  		bet_fixture.time = fix.time
+	#  		teams = fix.teams.split(" v ")
+	#  		bet_fixture.home_team = teams[0]
+	#  		bet_fixture.away_team = teams[1]
+	#  		bet_fixture.location = fix.location
+	#  		bet_fixture.save
+	#  		p "<<<#{bet_fixture.id}>>>created with date <<<<<< #{date} >>>>>>>"
+	#  	end
 
 end
