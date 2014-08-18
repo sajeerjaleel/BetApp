@@ -27,19 +27,19 @@
 		  	<% if a.date != "" %>
 			  	<thead>
 			  		<tr style="background-color:#2C3446;">
-			  			<td colspan="2"><b><%= a.date %></b></td>
+			  			<td><b><%= a.date %></b></td>
 			  			<td colspan="4"></td>
 			  		</tr>
 			  	</thead>
 			  <% end %>
 			  <% if a.hometeam and a.awayteam != ""%>
 			  	<tbody>
-					  <tr style="color:white;">
+					  <tr>
 					  	<td></td>
-					  	<td class="text-center"><em><%= a.hometeam %></em></td>
-					  	<td class="text-center"><b><%= a.score %></b></td>
-					  	<td class="text-center"><em><%= a.awayteam %></em></td>
-					  	<td class="text-center"><em><%= a.location %></em></td>
+					  	<td><em><%= team_icon(a.hometeam) %>&nbsp<%= a.hometeam %></em></td>
+					  	<td style="color:#2ecc71;"><b><%= a.score %></b></td>
+					  	<td><em><%= team_icon(a.awayteam) %>&nbsp<%= a.awayteam %></em></td>
+					  	<td style="color:#FA5882;"><em><%= a.location %></em></td>
 					  </tr>
 					</tbody>
 				<% end %>
