@@ -26,14 +26,16 @@
 		  <% @results.each do |a| %>
 		  	<% if a.date != "" %>
 			  	<thead>
-			  		<tr>
-			  			<td><b><%= a.date %></b></td>
+			  		<tr style="background-color:#2C3446;">
+			  			<td colspan="2"><b><%= a.date %></b></td>
+			  			<td colspan="4"></td>
 			  		</tr>
 			  	</thead>
 			  <% end %>
 			  <% if a.hometeam and a.awayteam != ""%>
 			  	<tbody>
-					  <tr style="background-color:#CED8F6; color:#0B0B3B;">
+					  <tr style="color:white;">
+					  	<td></td>
 					  	<td class="text-center"><em><%= a.hometeam %></em></td>
 					  	<td class="text-center"><b><%= a.score %></b></td>
 					  	<td class="text-center"><em><%= a.awayteam %></em></td>
