@@ -122,24 +122,27 @@ class HomeController < ApplicationController
 	home_bets = bets.where(prediction: "home")
   draw_bets = bets.where(prediction: "draw")
   away_bets = bets.where(prediction: "away")
-  total_coins = bets.sum(:coins) + params[:coins].to_i
+  # total_coins = bets.sum(:coins) + params[:coins].to_i
   home_coins  = home_bets.sum(:coins)
   draw_coins  = draw_bets.sum(:coins)
   away_coins  = away_bets.sum(:coins)
   user_coins = params[:coins].to_i
 
   if params[:prediction] == "home"
+  		total_coins = draw_coins + away_coins
   		home_coins += params[:coins].to_i
       user_share = (user_coins.to_f / home_coins.to_f)
-      @user_win_coin = user_share * total_coins
+      @user_win_coin = params[:coins].to_i + (user_share * total_coins).to_i
   elsif params[:prediction] == "draw"
+  	total_coins = home_coins + away_coins
   	draw_coins += params[:coins].to_i
       user_share = (user_coins.to_f  / draw_coins.to_f)
-      @user_win_coin = user_share * total_coins
+      @user_win_coin = params[:coins].to_i + (user_share * total_coins).to_i
   elsif params[:prediction] == "away"
+  	total_coins = draw_coins + home_coins
   	away_coins += params[:coins].to_i
       user_share = (user_coins.to_f  / away_coins.to_f)
-      @user_win_coin = user_share * total_coins
+      @user_win_coin = params[:coins].to_i + (user_share * total_coins).to_i
   end
 	@user_win_coin = @user_win_coin.to_i
   respond_to do |format|

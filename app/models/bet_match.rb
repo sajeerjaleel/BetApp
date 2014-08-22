@@ -18,7 +18,7 @@ class BetMatch < ActiveRecord::Base
 		@draw_bets = @bets.where(prediction: "draw")
 		@away_bets = @bets.where(prediction: "away")
 
-		@total_coins = @bets.sum(:coins)
+		# @total_coins = @bets.sum(:coins)
 		@home_coins  = @home_bets.sum(:coins)
 		@draw_coins  = @draw_bets.sum(:coins)
 		@away_coins  = @away_bets.sum(:coins)
@@ -34,21 +34,26 @@ class BetMatch < ActiveRecord::Base
 
 				if @user_bet == "home" and result == "home"
 
+					@total_coins = (@draw_coins + @away_coins).to_i
+					@user_coins  = user_bet.coins
 					@user_share = (@user_coins.to_f / @home_coins.to_f)
-					@user_win_coin = (@user_share * @total_coins).to_i
+					@user_win_coin = @user_coins.to_i + ((@user_share * @total_coins).to_i)
 					user.coins += @user_win_coin
 					user.save
 					user_bet.update(coins_won:  @user_win_coin)
 
 				elsif @user_bet == "home" and result != "home"
 
+					@user_coins  = user_bet.coins
 					@user_lose_coin = (@user_coins).to_i
 					user_bet.update(coins_won:  -(@user_lose_coin))
 
 				elsif @user_bet == "draw" and result =="draw"
 
+					@total_coins = (@home_coins + @away_coins).to_i
+					@user_coins  = user_bet.coins
 					@user_share = (@user_coins.to_f  / @draw_coins.to_f)
-					@user_win_coin = (@user_share * @total_coins).to_i
+					@user_win_coin = @user_coins.to_i + ((@user_share * @total_coins).to_i)
 					user.coins+= @user_win_coin
 					user.save
 					user_bet.update(coins_won:  @user_win_coin)
@@ -56,19 +61,23 @@ class BetMatch < ActiveRecord::Base
 
 				elsif @user_bet == "draw" and result !="draw"
 
+					@user_coins  = user_bet.coins
 					@user_lose_coin = (@user_coins).to_i
 					user_bet.update(coins_won:  -(@user_lose_coin))
 
 				elsif @user_bet == "away" and result =="away"
 
+					@total_coins = (@draw_coins + @home_coins).to_i
+					@user_coins  = user_bet.coins
 					@user_share = (@user_coins.to_f  / @away_coins.to_f)
-					@user_win_coin = (@user_share * @total_coins).to_i
+					@user_win_coin = @user_coins.to_i + ((@user_share * @total_coins).to_i)
 					user.coins+= @user_win_coin
 					user.save
 					user_bet.update(coins_won:  @user_win_coin)
 
 				elsif @user_bet == "away" and result !="away"
 
+					@user_coins  = user_bet.coins
 					@user_lose_coin = (@user_coins).to_i
 					user_bet.update(coins_won:  -(@user_lose_coin))
 
