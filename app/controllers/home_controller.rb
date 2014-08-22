@@ -25,7 +25,7 @@ class HomeController < ApplicationController
 
 	def bet_results
 		@users_all = User.order("coins DESC")
-		@users = @users_all.page(params[:page]).per(10)
+		@users = User.order("coins DESC").page(params[:page]).per(10)
 
 		@user_position = @users_all.index(current_user)+1
 	end
