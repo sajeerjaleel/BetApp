@@ -171,4 +171,24 @@ module ApplicationHelper
 		end
 	end
 
+	def left_next id
+		@matches = BetMatch.where('completed = ? and done = ?', false, false)
+		b = BetMatch.find_by(bet_fixture_id: (id.to_i - 1))
+		if @matches.include?(b)
+			return bet_path(id.to_i - 1)
+		else
+			return bet_path(@matches.last.bet_fixture_id)
+		end
+	end
+
+	def right_next id
+		@matches = BetMatch.where('completed = ? and done = ?', false, false)
+		b = BetMatch.find_by(bet_fixture_id: (id.to_i + 1))
+		if @matches.include?(b)
+			return bet_path(id.to_i + 1)
+		else
+			return bet_path(@matches.first.bet_fixture_id)
+		end
+	end
+
 end

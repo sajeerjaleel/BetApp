@@ -26,6 +26,10 @@ class BetMatchPolicy
   	is_admin?
   end
 
+  def bet?
+    BetMatch.where('completed = ? and done = ?', false, false).include?(@bet_match)
+  end
+
   def is_admin?
   	user.has_role? :admin
   end
